@@ -58,7 +58,7 @@ function StudentCard({ student, nameQuery = "", tagQuery = "" }) {
                 />
                 <CardMedia
                     component="img"
-                    sx={{ height: 230 }}
+                    sx={{ height: 200 }}
                     image={student.image}
                     alt={student.firstName} />
                 <List dense="true">
@@ -81,14 +81,14 @@ function StudentCard({ student, nameQuery = "", tagQuery = "" }) {
                         />
                     </ListItem>
                 </List>
-                    <CardContent sx={{ flex: '1 0 auto' }}>
+                    {/* <CardContent sx={{ flex: '1 0 auto' }}>
                         <Typography component="div" variant="h5">
                             {student.firstName} {student.lastName}
                         </Typography>
                         <Typography varient="subtitle1" color="text.secondary" component="div">
                             Year {currentYear}
                         </Typography>
-                    </CardContent>
+                    </CardContent> */}
             </Card>
         </Grid>
 
