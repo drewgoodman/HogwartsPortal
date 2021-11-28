@@ -11,17 +11,7 @@ import {
     STUDENT_LIST_NAMES,
 } from '../constants/studentConstants';
 
-import studentsData from '../data/students.json';
-import studentData from '../data/student.json';
-
 export const listStudents = () => async (dispatch) => {
-
-    // const data = studentsData
-
-    // dispatch({
-    //     type: STUDENT_LIST_SUCCESS,
-    //     payload: data
-    // })
 
     try {
         dispatch({type: STUDENT_LIST_REQUEST})
@@ -42,12 +32,24 @@ export const listStudents = () => async (dispatch) => {
     }
 }
 
-export const getStudentDetails = (id) => (dispatch) => {
-    const data = studentData
+export const getStudentDetails = (id) => async (dispatch) => {
 
-    dispatch({
-        type: STUDENT_DETAILS_SUCCESS,
-        payload: data
-    })
+    try {
+        dispatch({type: STUDENT_DETAILS_REQUEST})
+        const { data } = await axios.get(`https://drg-hogwarts-react-api.herokuapp.com/api/students/${id}`)
+
+        dispatch({
+            type: STUDENT_DETAILS_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: STUDENT_DETAILS_FAILURE,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message
+        })
+    }
 
 }

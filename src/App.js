@@ -19,14 +19,6 @@ import OrganizationsPage from './pages/OrganizationsPage';
 
 const drawerWidth = 280;
 
-
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-
 function App(props) {
 
   const darkModeEnabled = useSelector(state => state.dashboard.darkMode)
