@@ -1,0 +1,46 @@
+{
+    "id": 5,
+    "firstName": "Harry",
+    "lastName": "Potter",
+    "skill": "Quidditch",
+    "house": "GRYFFINDOR",
+    "currentYear": 6,
+    "enrollDate": "2021-09-01",
+    "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/5.jpg",
+    "courses": [
+        {
+            "name": "Potions VI",
+            "grades": [
+                {
+                    "grade": 76,
+                    "date": "2021-11-24",
+                    "id": 5
+                },
+                {
+                    "grade": 83,
+                    "date": "2021-11-24",
+                    "id": 15
+                },
+                {
+                    "grade": 56,
+                    "date": "2021-11-24",
+                    "id": 25
+                }
+            ],
+            "id": 5
+        },
+        {
+            "name": "Herbology VI",
+            "grades": [],
+            "id": 15
+        },
+        {
+            "name": "Defense Against Dark Arts VII",
+            "grades": [],
+            "id": 25
+        }
+    ],
+    "tags": [
+        "Boy Who Lived"
+    ]
+}

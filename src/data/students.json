@@ -1,0 +1,262 @@
+[
+    {
+        "id": 5,
+        "firstName": "Harry",
+        "lastName": "Potter",
+        "skill": "Quidditch",
+        "house": "GRYFFINDOR",
+        "currentYear": 6,
+        "enrollDate": "2021-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/5.jpg",
+        "courses": [
+            {
+                "name": "Potions VI",
+                "grades": [
+                    {
+                        "grade": 76,
+                        "date": "2021-11-24",
+                        "id": 5
+                    },
+                    {
+                        "grade": 83,
+                        "date": "2021-11-24",
+                        "id": 15
+                    },
+                    {
+                        "grade": 56,
+                        "date": "2021-11-24",
+                        "id": 25
+                    }
+                ],
+                "id": 5
+            },
+            {
+                "name": "Herbology VI",
+                "grades": [],
+                "id": 15
+            },
+            {
+                "name": "Defense Against Dark Arts VII",
+                "grades": [],
+                "id": 25
+            }
+        ],
+        "tags": [
+            "Boy Who Lived"
+        ]
+    },
+    {
+        "id": 15,
+        "firstName": "Ronald",
+        "lastName": "Weasley",
+        "skill": "Wizard's Chess",
+        "house": "GRYFFINDOR",
+        "currentYear": 6,
+        "enrollDate": "1991-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/15_8JocK7u.jpg",
+        "courses": [
+            {
+                "name": "Transfiguration VI",
+                "grades": [],
+                "id": 35
+            },
+            {
+                "name": "Potions VI",
+                "grades": [
+                    {
+                        "grade": 37,
+                        "date": "2021-11-24",
+                        "id": 55
+                    }
+                ],
+                "id": 45
+            },
+            {
+                "name": "Divination VI",
+                "grades": [],
+                "id": 55
+            }
+        ],
+        "tags": []
+    },
+    {
+        "id": 25,
+        "firstName": "Hermione",
+        "lastName": "Granger",
+        "skill": "Social Activism",
+        "house": "GRYFFINDOR",
+        "currentYear": 6,
+        "enrollDate": "1991-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/25_1Ya9AJh.jpg",
+        "courses": [
+            {
+                "name": "Potions VII",
+                "grades": [
+                    {
+                        "grade": 99,
+                        "date": "2021-11-24",
+                        "id": 35
+                    },
+                    {
+                        "grade": 97,
+                        "date": "2021-11-24",
+                        "id": 45
+                    }
+                ],
+                "id": 65
+            },
+            {
+                "name": "Herbology VII",
+                "grades": [],
+                "id": 75
+            }
+        ],
+        "tags": [
+            "Genius"
+        ]
+    },
+    {
+        "id": 35,
+        "firstName": "Draco",
+        "lastName": "Malfoy",
+        "skill": "Wealth",
+        "house": "SLYTHERIN",
+        "currentYear": 6,
+        "enrollDate": "1991-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/35.jpg",
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 45,
+        "firstName": "Cho",
+        "lastName": "Chang",
+        "skill": "Quidditch",
+        "house": "RAVENCLAW",
+        "currentYear": 7,
+        "enrollDate": "1990-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/None.jpg",
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 55,
+        "firstName": "Cedric",
+        "lastName": "Diggory",
+        "skill": "Quidditch",
+        "house": "HUFFLEPUFF",
+        "currentYear": 4,
+        "enrollDate": "1990-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/None.png",
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 65,
+        "firstName": "Tom",
+        "lastName": "Riddle",
+        "skill": "Murder",
+        "house": "SLYTHERIN",
+        "currentYear": 7,
+        "enrollDate": "1938-09-01",
+        "image": null,
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 75,
+        "firstName": "Neville",
+        "lastName": "Longbottom",
+        "skill": "Herbology",
+        "house": "GRYFFINDOR",
+        "currentYear": 6,
+        "enrollDate": "1991-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/None_gHOllct.jpg",
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 85,
+        "firstName": "Luna",
+        "lastName": "Lovegood",
+        "skill": "Zoology",
+        "house": "RAVENCLAW",
+        "currentYear": 5,
+        "enrollDate": "1992-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/None_AUcJsmz.jpg",
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 95,
+        "firstName": "Ginny",
+        "lastName": "Weasley",
+        "skill": "Quidditch",
+        "house": "GRYFFINDOR",
+        "currentYear": 5,
+        "enrollDate": "1992-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/None_x5zqIdm.jpg",
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 105,
+        "firstName": "Dean",
+        "lastName": "Thomas",
+        "skill": "Covering Up Murders",
+        "house": "GRYFFINDOR",
+        "currentYear": 6,
+        "enrollDate": "1991-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/None_rV7NIfA.png",
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 115,
+        "firstName": "Colin",
+        "lastName": "Creevey",
+        "skill": "Photography",
+        "house": "GRYFFINDOR",
+        "currentYear": 5,
+        "enrollDate": "1992-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/None_ZFnhX5f.jpg",
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 125,
+        "firstName": "Blaise",
+        "lastName": "Zabini",
+        "skill": "Quidditch",
+        "house": "SLYTHERIN",
+        "currentYear": 6,
+        "enrollDate": "1991-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/None_cnD7Z7H.jpg",
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 135,
+        "firstName": "Vincent",
+        "lastName": "Crabbe",
+        "skill": "Henchmen Stuff",
+        "house": "SLYTHERIN",
+        "currentYear": 6,
+        "enrollDate": "1991-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/None_gFhUcAv.jpg",
+        "courses": [],
+        "tags": []
+    },
+    {
+        "id": 145,
+        "firstName": "Gregory",
+        "lastName": "Goyle",
+        "skill": "Henchmen Stuff",
+        "house": "SLYTHERIN",
+        "currentYear": 6,
+        "enrollDate": "1991-09-01",
+        "image": "https://drg-student-s3.s3.amazonaws.com/media/uploads/students/None_5K6dVY6.jpg",
+        "courses": [],
+        "tags": []
+    }
+]

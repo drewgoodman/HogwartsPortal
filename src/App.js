@@ -1,24 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { useSelector } from 'react-redux';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-function App() {
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Toolbar from '@mui/material/Toolbar';
+
+import HeaderBar from './components/ui/HeaderBar';
+import SideBar from './components/ui/SideBar';
+import SnackbarSuccess from './components/ui/SnackbarSuccess';
+
+import HomePage from './pages/HomePage';
+import StudentsPage from './pages/StudentsPage';
+import StudentDetailsPage from './pages/StudentDetailsPage';
+import CoursesPage from './pages/CoursesPage';
+import OrganizationsPage from './pages/OrganizationsPage';
+
+const drawerWidth = 280;
+
+
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+function App(props) {
+
+  const darkModeEnabled = useSelector(state => state.dashboard.darkMode)
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: darkModeEnabled? 'dark': 'light',
+        },
+      }),
+    [darkModeEnabled],
+  );
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const container = window !== undefined ? () => window().document.body : undefined;
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <Box className="App" sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <HeaderBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} />
+          <SideBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} container={container} />
+          <Box
+            component="main"
+            sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+          >
+            <Toolbar />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/students" element={<StudentsPage />} />
+              <Route path="/student/:id" element={<StudentDetailsPage />} />
+              <Route path="/courses" element={<CoursesPage />} />
+              <Route path="/organizations" element={<OrganizationsPage />} />
+            </Routes>
+          </Box>
+
+        </Box>
+        <SnackbarSuccess />
+      </ThemeProvider>
+    </Router>
   );
 }
 
