@@ -67,7 +67,7 @@ function StudentsPage() {
             <Toolbar />
             <Container maxWidth="lg">
                 {studentLoading && <Loader/> }
-                <Grid container spacing={3}>
+                <Grid container spacing={3} alignItems="center" justifyContent="center">
                     {
                         students
                             ?.filter(student => filterByName(student.firstName, student.lastName))
