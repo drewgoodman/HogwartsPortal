@@ -51,7 +51,7 @@ function StudentDetailsPage({ history }) {
             <Container maxWidth="lg">
                 <Toolbar />
                 <Grid container spacing={8} justify="center">
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} sm={12} md={4}>
                             <Box
                                 display="flex"
                                 justifyContent="center"
@@ -63,7 +63,7 @@ function StudentDetailsPage({ history }) {
                                 />
                             </Box>
                     </Grid>
-                    <Grid item xs={12} sm={8}>
+                    <Grid item xs={12} sm={12} md={8}>
                         <Stack spacing={3}>
                         <Typography variant="h4" component="div" gutterBottom noWrap={true} sx={{ textTransform: "uppercase" }}>
                             {student.firstName} {student.lastName}
@@ -97,12 +97,7 @@ function StudentDetailsPage({ history }) {
                                     />
                                 </TagListItem>
                             </Box>
-                        </Stack>
-                    </Grid>
-                </Grid>
-                <Toolbar />
                 <Divider />
-                <Toolbar />
                 <Box sx={{ bgcolor: 'background.paper' }}>
                     <Typography variant="h5" component="div">
                         Enrolled Classes
@@ -110,7 +105,7 @@ function StudentDetailsPage({ history }) {
                     <Tabs
                         value={courseValue}
                         onChange={handleCourseSelect}
-                        variant="scollable"
+                        variant="scrollable"
                         scrollButtons
                         allowScrollButtonsMobile
                         aria-label="scrollable classes"
@@ -136,6 +131,9 @@ function StudentDetailsPage({ history }) {
                 </Box>
 
                 </Paper>
+                        </Stack>
+                    </Grid>
+                </Grid>
             </Container>
         )
     )

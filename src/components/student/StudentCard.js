@@ -9,6 +9,7 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
+import Chip from '@mui/material/Chip';
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -23,11 +24,13 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+import StudentHouseAvatar from './StudentHouseAvatar';
 import StudentPinButton from './StudentPinButton';
 
+import { HOUSE_PRIMARY_COLOR, HOUSE_PRIMARY_COLOR_INNERTEXT } from '../../constants/baseConstants';
 
 const numToWords = (number) => {
-    const words = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven']
+    const words = ['Zero', 'First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh']
     return words[number]
 }
 
@@ -36,24 +39,25 @@ function StudentCard({ student, nameQuery = "", tagQuery = "" }) {
     const currentYear = numToWords(student.currentYear)
     const enrollYear = student.enrollDate.split('-')[0];
     const fullName = student.firstName + " " + student.lastName
+    const houseColor = HOUSE_PRIMARY_COLOR[`${student.house}`]
+    const houseColorText = HOUSE_PRIMARY_COLOR_INNERTEXT[`${student.house}`]
 
     return (
         <Grid item >
-            <Card sx={{width: 320}}>
+            <Card sx={{ width: 320 }}>
                 <CardHeader
                     avatar={
-                        <Avatar sx={{ bgcolor: red[500]}} aria-label="house">
-                            R
-                        </Avatar>
+                        <StudentHouseAvatar house={student.house} />
                     }
                     title={
                         <Link color="inherit" underline="none" component={RouterLink} to={`/student/${student.id}`}>
                             <Typography variant="h6" component="div" noWrap="true">{fullName}</Typography>
                         </Link>
                     }
-                    subheader="Attending"
                     action={
-                        <StudentPinButton studentId={student.id} />
+                        <StudentPinButton studentId={student.id} sx={{
+                            display: { xs: 'none', sm: 'block' }
+                        }} />
                     }
                 />
                 <CardMedia
@@ -61,10 +65,18 @@ function StudentCard({ student, nameQuery = "", tagQuery = "" }) {
                     sx={{ height: 200 }}
                     image={student.image}
                     alt={student.firstName} />
+                <Chip
+                    label={student.house}
+                    sx={{
+                        bgcolor: `${houseColor}`,
+                        color: `${houseColorText}`
+                    }}
+                />
+                <Chip label={`${currentYear} Year`} variant="outlined" />
                 <List dense="true">
                     <ListItem>
                         <ListItemIcon>
-                            <ShareIcon/>
+                            <ShareIcon />
                         </ListItemIcon>
                         <ListItemText
                             primary="Enrollment Year"
@@ -73,7 +85,7 @@ function StudentCard({ student, nameQuery = "", tagQuery = "" }) {
                     </ListItem>
                     <ListItem>
                         <ListItemIcon>
-                            <ShareIcon/>
+                            <ShareIcon />
                         </ListItemIcon>
                         <ListItemText
                             primary="Courses Assigned"
@@ -81,7 +93,7 @@ function StudentCard({ student, nameQuery = "", tagQuery = "" }) {
                         />
                     </ListItem>
                 </List>
-                    {/* <CardContent sx={{ flex: '1 0 auto' }}>
+                {/* <CardContent sx={{ flex: '1 0 auto' }}>
                         <Typography component="div" variant="h5">
                             {student.firstName} {student.lastName}
                         </Typography>
@@ -91,30 +103,6 @@ function StudentCard({ student, nameQuery = "", tagQuery = "" }) {
                     </CardContent> */}
             </Card>
         </Grid>
-
-        // <Paper elevation={4}>{student.firstName}</Paper>
-
-        // <div>
-        //     <img src={student.image} alt={student.firstName} className="student-image" />
-        //     <h1>{student.firstName} {student.lastName}</h1>
-        //     <div>Skill: {student.skill}</div>
-        //     <div>Class: Year {currentYear}</div>
-        //     <div>Enrollment Year: {enrollYear}</div>
-        //     {
-        //         student.tags.map(tag => <div>{tag}</div>)
-        //     }
-        //     {
-        //         student.courses.map(course =>
-        //             <div>{course.name}
-        //                 {
-        //                     course.grades?.map(grade =>
-        //                         <div>{grade.grade}</div>
-        //                     )
-        //                 }
-        //             </div>
-        //         )
-        //     }
-        // </div>
     )
 
 }

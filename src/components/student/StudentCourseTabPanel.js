@@ -1,5 +1,6 @@
 import React from 'react'
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,22 +8,40 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import CoursesPage from '../../pages/CoursesPage';
 
 function StudentCourseTabPanel(props) {
     const { value, index, course } = props;
+
+    const getGradeAverage = (grades) => {
+
+        if ( grades.length > 0) {
+            let gradeTotal = grades
+                .map(grade => parseInt(grade.grade))
+                .reduce((a, b) => a + b, 0);
+    
+            return gradeTotal / grades.length;
+        }
+        return 0;
+
+    }
+
+    const gradeAverage = getGradeAverage(course.grades)
+
     return (
         <div
             role="tabpanel"
             hidden={value !== index}
             aria-labelledby={`student-course-panel-${index}`}
         >
-            <Toolbar />
-            <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                    {course.name}
-                </Grid>
-                <Grid item xs={12} sm={6}>
+            <Stack spacing={2} sx={{padding:"10px"}}>
+                        <Typography variant="h6" component="div" noWrap={true} sx={{ textTransform: "uppercase" }}>
+                            {course.name}
+                        </Typography>
+                        Overall Grade Average: {gradeAverage.toFixed(2)}%
+
+                
                     {
                         course.grades.length === 0 ? (
                             <div>No grade data available.</div>
@@ -50,11 +69,7 @@ function StudentCourseTabPanel(props) {
                         </TableContainer>
                         )
                     }
-
-                </Grid>
-
-            </Grid>
-
+            </Stack>
         </div>
     )
 }

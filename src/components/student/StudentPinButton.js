@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import PushPinIcon from '@mui/icons-material/PushPin';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 
-function StudentPinButton({ studentId }) {
+function StudentPinButton({ studentId, sx={} }) {
 
     const dispatch = useDispatch()
     const pinnedStudents = useSelector(state => state.dashboard.pinnedStudents)
@@ -32,6 +32,7 @@ function StudentPinButton({ studentId }) {
                 isPinned()? "Remove Pin" :
                 "Pin to Dashboard"
             }
+            sx={sx}
             placement="top-end">
             <IconButton
                 onClick={handlePinClick}>

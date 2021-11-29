@@ -63,6 +63,12 @@ function StudentFilters({ nameQuery, setNameQuery, tagQuery, setTagQuery, status
                 <FormControl component="fieldset">
                     <FormLabel component="legend">House Filter:</FormLabel>
                     <FormGroup aria-label="houses" row>
+                        <FormControlLabel
+                            control={<Checkbox/>}
+                            label="All"
+                            labelPlacement="bottom"
+                            checked={houseQuery[0]}
+                            />
                         {
                             houseList.map((house, index) => (
                                 <FormControlLabel
