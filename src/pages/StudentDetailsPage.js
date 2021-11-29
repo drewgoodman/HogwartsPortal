@@ -52,24 +52,24 @@ function StudentDetailsPage({ history }) {
                 <Toolbar />
                 <Grid container spacing={8} justify="center">
                     <Grid item xs={12} sm={12} md={4}>
-                            <Box
-                                display="flex"
-                                justifyContent="center"
-                            >
-                                <Avatar
-                                    alt={`${student.firstName} ${student.LastName}`}
-                                    src={student.image}
-                                    sx={{ width: 256, height: 256 }}
-                                />
-                            </Box>
+                        <Box
+                            display="flex"
+                            justifyContent="center"
+                        >
+                            <Avatar
+                                alt={`${student.firstName} ${student.LastName}`}
+                                src={student.image}
+                                sx={{ width: 256, height: 256 }}
+                            />
+                        </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={8}>
                         <Stack spacing={3}>
-                        <Typography variant="h4" component="div" gutterBottom noWrap={true} sx={{ textTransform: "uppercase" }}>
-                            {student.firstName} {student.lastName}
-                        </Typography>
-                        Student Data Goes Here
-                        <Box
+                            <Typography variant="h4" component="div" gutterBottom noWrap={true} sx={{ textTransform: "uppercase" }}>
+                                {student.firstName} {student.lastName}
+                            </Typography>
+                            Student Data Goes Here
+                            <Box
                                 sx={{
                                     display: 'flex',
                                     justifyContent: 'center',
@@ -91,46 +91,52 @@ function StudentDetailsPage({ history }) {
                                 <TagListItem>
                                     <Chip
                                         label="Add New Tag"
-                                        icon={<AddIcon/>}
+                                        icon={<AddIcon />}
                                         variant="outlined"
-                                        // onClick={}
+                                    // onClick={}
                                     />
                                 </TagListItem>
                             </Box>
-                <Divider />
-                <Box sx={{ bgcolor: 'background.paper' }}>
-                    <Typography variant="h5" component="div">
-                        Enrolled Classes
-                    </Typography>
-                    <Tabs
-                        value={courseValue}
-                        onChange={handleCourseSelect}
-                        variant="scrollable"
-                        scrollButtons
-                        allowScrollButtonsMobile
-                        aria-label="scrollable classes"
-                    >
-                        {
-                            student.courses?.map((course, index) => (
-                                <Tab label={course.name} value={index} key={`course-tab-${index}`} />
-                            ))
-                        }
-                    </Tabs>
-                </Box>
-                <Paper>
-                <Box>
+                            <Divider />
+                            {
+                                student.status === "ATTENDING" ?
+                                    (
+                                        <Paper>
+                                            <Box sx={{ bgcolor: 'background.paper' }}>
+                                                <Typography variant="h5" component="div">
+                                                    Enrolled Classes
+                                                </Typography>
+                                                <Tabs
+                                                    value={courseValue}
+                                                    onChange={handleCourseSelect}
+                                                    variant="scrollable"
+                                                    scrollButtons
+                                                    allowScrollButtonsMobile
+                                                    aria-label="scrollable classes"
+                                                >
+                                                    {
+                                                        student.courses?.map((course, index) => (
+                                                            <Tab label={course.name} value={index} key={`course-tab-${index}`} />
+                                                        ))
+                                                    }
+                                                </Tabs>
+                                            </Box>
+                                            <Box>
 
-                    {
-                        student.courses?.map((course, index) => 
-                        <StudentCourseTabPanel
-                            value={courseValue}
-                            index={index}
-                            course={course}
-                        />)
-                    }
-                </Box>
-
-                </Paper>
+                                                {
+                                                    student.courses?.map((course, index) =>
+                                                        <StudentCourseTabPanel
+                                                            value={courseValue}
+                                                            index={index}
+                                                            course={course}
+                                                        />)
+                                                }
+                                            </Box>
+                                        </Paper>
+                                    ) : (
+                                        <div> Not a current student at Hogwarts.</div>
+                                    )
+                            }
                         </Stack>
                     </Grid>
                 </Grid>

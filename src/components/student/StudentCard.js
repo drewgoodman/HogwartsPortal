@@ -72,7 +72,15 @@ function StudentCard({ student, nameQuery = "", tagQuery = "" }) {
                         color: `${houseColorText}`
                     }}
                 />
-                <Chip label={`${currentYear} Year`} variant="outlined" />
+                {
+                    student.status === "ATTENDING" ? (
+                        <Chip label={`${currentYear.toUpperCase()} YEAR`} variant="outlined" />
+                    ) : student.status === "GRADUATED" ? (
+                        <Chip label={student.status} variant="outlined" color="success" />
+                    ) : (
+                        <Chip label={student.status} variant="outlined" color="warning" />
+                    )
+                }
                 <List dense="true">
                     <ListItem>
                         <ListItemIcon>

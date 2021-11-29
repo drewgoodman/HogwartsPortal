@@ -17,7 +17,6 @@ import StudentFilterInput from './StudentFilterInput';
 import { getTags } from '../../actions/tagActions';
 import { STUDENT_STATUS_OPTIONS } from '../../constants/baseConstants';
 
-const studentAutoList = ["Harry Potter", "Ronald Weasley", "Hermione Granger", "Draco Malfoy"]
 const houseList = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]
 
 function StudentFilters({
@@ -34,6 +33,7 @@ function StudentFilters({
     const dispatch = useDispatch()
 
     const tags = useSelector(state => state.tags)
+    const studentNames = useSelector(state => state.studentList.studentNames)
     const { loading, error, tagsList } = tags
     
 
@@ -83,7 +83,7 @@ function StudentFilters({
         loading ? <Loader /> : (
             <Grid container spacing={2}>
                 <Grid item xs={12} lg={5} md={5} sm={12}>
-                    <StudentFilterInput textValue={nameQuery} setTextValue={setNameQuery} placeholder="Search by Name" textType="filter" autoCompleteList={studentAutoList} />
+                    <StudentFilterInput textValue={nameQuery} setTextValue={setNameQuery} placeholder="Search by Name" textType="filter" autoCompleteList={studentNames} />
                 </Grid>
                 <Grid item xs={12} lg={5} md={5} sm={12}>
                     <StudentFilterInput textValue={tagQuery} setTextValue={setTagQuery} placeholder="Search by Tag" textType="filter" autoCompleteList={tagsList} />

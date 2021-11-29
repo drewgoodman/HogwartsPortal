@@ -17,13 +17,13 @@ export const studentListReducer = (state = { students: [], studentNames: [] }, a
             return { loading: true, students: [], studentNames: [] }
         
         case STUDENT_LIST_SUCCESS:
-            return { loading: false, students: action.payload }
+            return { ...state, loading: false, students: action.payload }
 
         case STUDENT_LIST_FAILURE:
             return { loading: false, error: action.payload }
 
         case STUDENT_LIST_NAMES:
-            return { studentNames: [] }
+            return { ...state, studentNames: action.payload }
         
         default:
             return state

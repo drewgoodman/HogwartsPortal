@@ -22,6 +22,13 @@ export const listStudents = () => async (dispatch) => {
             payload: data
         })
 
+        const studentNames = data.map(student => `${student.firstName} ${student.lastName}`)
+
+        dispatch({
+            type: STUDENT_LIST_NAMES,
+            payload: studentNames
+        })
+
     } catch (error) {
         dispatch({
             type: STUDENT_LIST_FAILURE,
