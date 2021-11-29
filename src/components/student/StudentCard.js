@@ -24,24 +24,19 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+import StudentChipBadges from './StudentChipBadges';
 import StudentHouseAvatar from './StudentHouseAvatar';
 import StudentPinButton from './StudentPinButton';
 
-import { HOUSE_PRIMARY_COLOR, HOUSE_PRIMARY_COLOR_INNERTEXT } from '../../constants/baseConstants';
-import { numToNthYear } from '../../utils.js/studentUtils';
 
 function StudentCard({ student }) {
 
-    const currentYear = numToNthYear(student.currentYear)
     const enrollYear = student.enrollDate.split('-')[0];
     const fullName = student.firstName + " " + student.lastName
 
-    const houseColor = HOUSE_PRIMARY_COLOR[student.house]
-    const houseColorText = HOUSE_PRIMARY_COLOR_INNERTEXT[student.house]
-
     return (
         <Grid item >
-            <Card sx={{ width: 320 }}>
+            <Card sx={{ width: { xs: "75vw", sm: 320} }}>
                 <CardHeader
                     avatar={
                         <StudentHouseAvatar house={student.house} />
@@ -62,22 +57,7 @@ function StudentCard({ student }) {
                     sx={{ height: 200 }}
                     image={student.image}
                     alt={student.firstName} />
-                <Chip
-                    label={student.house}
-                    sx={{
-                        bgcolor: `${houseColor}`,
-                        color: `${houseColorText}`
-                    }}
-                />
-                {
-                    student.status === "ATTENDING" ? (
-                        <Chip label={`${currentYear.toUpperCase()} YEAR`} variant="outlined" />
-                    ) : student.status === "GRADUATED" ? (
-                        <Chip label={student.status} variant="outlined" color="success" />
-                    ) : (
-                        <Chip label={student.status} variant="outlined" color="warning" />
-                    )
-                }
+                <StudentChipBadges student={student} />
                 <List dense="true">
                     <ListItem>
                         <ListItemIcon>

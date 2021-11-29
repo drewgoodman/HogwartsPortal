@@ -4,6 +4,7 @@ import { useParams, Link as RouterLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getStudentDetails } from '../actions/studentActions'
 
+import { Select } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -11,10 +12,7 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -28,8 +26,9 @@ import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 
 import Loader from '../components/ui/Loader';
+
+import StudentChipBadges from '../components/student/StudentChipBadges';
 import StudentCourseTabPanel from '../components/student/StudentCourseTabPanel';
-import { Select } from '@mui/material';
 
 const TagListItem = styled('li')(({ theme }) => ({
     margin: theme.spacing(0.5),
@@ -61,7 +60,7 @@ function StudentDetailsPage({ history }) {
                     &#8592; All Students
                 </Button>
                 <Toolbar />
-                <Grid container spacing={8} justify="center">
+                <Grid container spacing={4} justify="center">
                     <Grid item xs={12} sm={12} md={4}>
                         <Box
                             display="flex"
@@ -75,11 +74,14 @@ function StudentDetailsPage({ history }) {
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={8}>
-                        <Stack spacing={3}>
+                        <Stack spacing={2}>
                             <Typography variant="h4" component="div" gutterBottom noWrap={true} sx={{ textTransform: "uppercase" }}>
                                 {student.firstName} {student.lastName}
                             </Typography>
+                            <StudentChipBadges student={student} />
                             Student Data Goes Here
+                            
+
                             <Box
                                 sx={{
                                     display: 'flex',
@@ -117,6 +119,7 @@ function StudentDetailsPage({ history }) {
                                                 <Typography variant="h5" component="div">
                                                     Enrolled Classes
                                                 </Typography>
+
                                                 {/* TABS DESKTOP ONLY */}
                                                 <Tabs
                                                     value={courseValue}
@@ -132,6 +135,7 @@ function StudentDetailsPage({ history }) {
                                                         ))
                                                     }
                                                 </Tabs>
+
                                                 {/* DROPDOWN MOBILE ONLY */}
                                                 <FormControl
                                                     sx={{ display: { sm: 'none' } }}
@@ -150,6 +154,7 @@ function StudentDetailsPage({ history }) {
                                                         }
                                                     </Select>
                                                 </FormControl>
+
                                             </Box>
                                             <Box>
 
