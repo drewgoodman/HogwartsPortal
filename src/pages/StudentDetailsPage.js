@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link as RouterLink } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getStudentDetails } from '../actions/studentActions'
 
 import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
@@ -22,6 +29,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 import Loader from '../components/ui/Loader';
 import StudentCourseTabPanel from '../components/student/StudentCourseTabPanel';
+import { Select } from '@mui/material';
 
 const TagListItem = styled('li')(({ theme }) => ({
     margin: theme.spacing(0.5),
@@ -49,6 +57,9 @@ function StudentDetailsPage({ history }) {
     return (
         loading ? <Loader /> : (
             <Container maxWidth="lg">
+                <Button variant="outlined" component={RouterLink} to="/students/">
+                    &#8592; All Students
+                </Button>
                 <Toolbar />
                 <Grid container spacing={8} justify="center">
                     <Grid item xs={12} sm={12} md={4}>
@@ -106,13 +117,14 @@ function StudentDetailsPage({ history }) {
                                                 <Typography variant="h5" component="div">
                                                     Enrolled Classes
                                                 </Typography>
+                                                {/* TABS DESKTOP ONLY */}
                                                 <Tabs
                                                     value={courseValue}
                                                     onChange={handleCourseSelect}
                                                     variant="scrollable"
-                                                    scrollButtons
-                                                    allowScrollButtonsMobile
+                                                    scrollButtons="auto"
                                                     aria-label="scrollable classes"
+                                                    sx={{ display: { xs: 'none', sm: 'block' } }}
                                                 >
                                                     {
                                                         student.courses?.map((course, index) => (
@@ -120,6 +132,24 @@ function StudentDetailsPage({ history }) {
                                                         ))
                                                     }
                                                 </Tabs>
+                                                {/* DROPDOWN MOBILE ONLY */}
+                                                <FormControl
+                                                    sx={{ display: { sm: 'none' } }}
+                                                    fullWidth
+                                                >
+                                                    <InputLabel id="student-course-filter">Course Info</InputLabel>
+                                                    <Select
+                                                        labelId="filter-student-course-label"
+                                                        id="filter-student-course"
+                                                        value={courseValue}
+                                                        label="Course Info"
+                                                        onChange={(e) => handleCourseSelect(e, e.target.value)}
+                                                    >
+                                                        {
+                                                            student.courses?.map((course, index) => <MenuItem value={index} key={`course-dropdown-${index}`}>{course.name}</MenuItem>)
+                                                        }
+                                                    </Select>
+                                                </FormControl>
                                             </Box>
                                             <Box>
 

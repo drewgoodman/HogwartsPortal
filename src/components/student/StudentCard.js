@@ -28,19 +28,16 @@ import StudentHouseAvatar from './StudentHouseAvatar';
 import StudentPinButton from './StudentPinButton';
 
 import { HOUSE_PRIMARY_COLOR, HOUSE_PRIMARY_COLOR_INNERTEXT } from '../../constants/baseConstants';
+import { numToNthYear } from '../../utils.js/studentUtils';
 
-const numToWords = (number) => {
-    const words = ['Zero', 'First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh']
-    return words[number]
-}
+function StudentCard({ student }) {
 
-function StudentCard({ student, nameQuery = "", tagQuery = "" }) {
-
-    const currentYear = numToWords(student.currentYear)
+    const currentYear = numToNthYear(student.currentYear)
     const enrollYear = student.enrollDate.split('-')[0];
     const fullName = student.firstName + " " + student.lastName
-    const houseColor = HOUSE_PRIMARY_COLOR[`${student.house}`]
-    const houseColorText = HOUSE_PRIMARY_COLOR_INNERTEXT[`${student.house}`]
+
+    const houseColor = HOUSE_PRIMARY_COLOR[student.house]
+    const houseColorText = HOUSE_PRIMARY_COLOR_INNERTEXT[student.house]
 
     return (
         <Grid item >
@@ -101,14 +98,6 @@ function StudentCard({ student, nameQuery = "", tagQuery = "" }) {
                         />
                     </ListItem>
                 </List>
-                {/* <CardContent sx={{ flex: '1 0 auto' }}>
-                        <Typography component="div" variant="h5">
-                            {student.firstName} {student.lastName}
-                        </Typography>
-                        <Typography varient="subtitle1" color="text.secondary" component="div">
-                            Year {currentYear}
-                        </Typography>
-                    </CardContent> */}
             </Card>
         </Grid>
     )
