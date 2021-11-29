@@ -25,3 +25,10 @@ export const HOUSE_SECONDARY_COLOR = {
     "HUFFLEPUFF": "#000",
     "RAVENCLAW": "#946B2D"
 }
+
+export const STUDENT_STATUS_OPTIONS = [
+    "Attending",
+    "Graduated",
+    "Expelled",
+    "Deceased"
+]

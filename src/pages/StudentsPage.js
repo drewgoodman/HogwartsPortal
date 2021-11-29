@@ -21,9 +21,12 @@ function StudentsPage() {
     const [nameQuery, setNameQuery] = useState("");
     const [tagQuery, setTagQuery] = useState("");
     const [statusQuery, setStatusQuery] = useState("");
-    const [houseQuery, setHouseQuery] = useState([true,true,true,true]);
-
-
+    const [houseQuery, setHouseQuery] = useState({
+        Gryffindor: true,
+        Ravenclaw: true,
+        Hufflepuff: true,
+        Slytherin: true
+    });
 
     const filterByName = (firstName, lastName) => {
         let fullName = [firstName, lastName].join(" ");
@@ -45,6 +48,23 @@ function StudentsPage() {
         if (!tagQuery) { return true; }
         let tagFilterCheck = student.tags.find(tag => tag.toLowerCase().includes(tagQuery.toLowerCase()))
         return tagFilterCheck;
+    }
+
+    const filterByStatus = (student) => {
+        if (!statusQuery) { return true; }
+        if (statusQuery.toUpperCase() === student.status) {
+            return true;
+        }
+        return false;
+    }
+
+    const filterByHouse = (student) => {
+        for (const house in houseQuery) {
+            if (house.toUpperCase() === student.house && houseQuery[house]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     useEffect(() => {
@@ -72,6 +92,8 @@ function StudentsPage() {
                         students
                             ?.filter(student => filterByName(student.firstName, student.lastName))
                             .filter(student => filterByTag(student))
+                            .filter(student => filterByStatus(student))
+                            .filter(student => filterByHouse(student))
                             ?.map(student => <StudentCard student={student} key={student.id} />)
                     }
                 </Grid>
