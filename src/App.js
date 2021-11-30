@@ -10,6 +10,8 @@ import Toolbar from '@mui/material/Toolbar';
 import HeaderBar from './components/ui/HeaderBar';
 import SideBar from './components/ui/SideBar';
 import SnackbarSuccess from './components/ui/SnackbarSuccess';
+import TagCreateModal from './components/tags/TagCreateModal';
+import TagDeleteModal from './components/tags/TagDeleteModal';
 
 import HomePage from './pages/HomePage';
 import StudentsPage from './pages/StudentsPage';
@@ -65,6 +67,8 @@ function App(props) {
 
         </Box>
         <SnackbarSuccess />
+        <TagCreateModal />
+        <TagDeleteModal />
       </ThemeProvider>
     </Router>
   );

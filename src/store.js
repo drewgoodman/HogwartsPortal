@@ -4,13 +4,16 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { studentListReducer, studentDetailsReducer } from './reducers/studentReducers'
 import { dashboardReducer } from './reducers/dashboardReducers'
-import { tagsReducer } from './reducers/tagReducers'
+import { tagCreateReducer, tagDeleteReducer, tagModalReducer, tagsReducer } from './reducers/tagReducers'
 
 const reducer = combineReducers({
     studentList: studentListReducer,
     studentDetails: studentDetailsReducer,
     dashboard: dashboardReducer,
-    tags: tagsReducer
+    tags: tagsReducer,
+    tagCreate: tagCreateReducer,
+    tagDelete: tagDeleteReducer,
+    tagModal: tagModalReducer
 })
 
 const pinnedStudentsLocalSetting = localStorage.getItem('pinnedStudents') ?

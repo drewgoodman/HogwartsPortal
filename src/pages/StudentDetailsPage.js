@@ -30,6 +30,8 @@ import Loader from '../components/ui/Loader';
 import StudentChipBadges from '../components/student/StudentChipBadges';
 import StudentCourseTabPanel from '../components/student/StudentCourseTabPanel';
 
+import { openTagCreateModal, openTagDeleteModal } from '../actions/tagActions';
+
 const TagListItem = styled('li')(({ theme }) => ({
     margin: theme.spacing(0.5),
 }));
@@ -43,6 +45,14 @@ function StudentDetailsPage({ history }) {
 
     const studentDetails = useSelector(state => state.studentDetails);
     const { loading, error, student } = studentDetails
+
+    const handleTagDelete = (tagData) => {
+        dispatch(openTagDeleteModal(tagData))
+    }
+
+    const handleTagCreate = (tagData) => {
+        dispatch(openTagCreateModal(tagData))
+    }
 
     useEffect(() => {
         dispatch(getStudentDetails(match.id));
@@ -85,7 +95,10 @@ function StudentDetailsPage({ history }) {
                             <Box
                                 sx={{
                                     display: 'flex',
-                                    justifyContent: 'center',
+                                    justifyContent: {
+                                        xs: "center",
+                                        sm: "left"
+                                    },
                                     flexWrap: 'wrap',
                                     listStyle: 'none',
                                     p: 0.5,
@@ -95,9 +108,13 @@ function StudentDetailsPage({ history }) {
                             >
                                 {
                                     student.tags?.map(tag => (
-                                        <TagListItem key={`tag-${tag}`}>
+                                        <TagListItem key={`tag-${tag.id}`}>
                                             <Chip
-                                                label={tag} />
+                                                onDelete={(e) => handleTagDelete({
+                                                    tagName: tag.name,
+                                                    tagId: tag.id
+                                                })}
+                                                label={tag.name} />
                                         </TagListItem>
                                     ))
                                 }
@@ -106,14 +123,20 @@ function StudentDetailsPage({ history }) {
                                         label="Add New Tag"
                                         icon={<AddIcon />}
                                         variant="outlined"
-                                    // onClick={}
+                                        onClick={(e) => handleTagCreate({
+                                            studentId: student.id,
+                                            studentTags: student.tags.map(tag => tag.name)
+                                        })}
                                     />
                                 </TagListItem>
                             </Box>
                             <Divider />
                             {
                                 student.status === "ATTENDING" ?
+                                    student.courses.length === 0 ?
                                     (
+                                        <div>Not currently enrolled in any courses.</div>
+                                    ) : (
                                         <Paper>
                                             <Box sx={{ bgcolor: 'background.paper' }}>
                                                 <Typography variant="h5" component="div">

@@ -20,7 +20,7 @@ function StudentsPage() {
 
     const [nameQuery, setNameQuery] = useState("");
     const [tagQuery, setTagQuery] = useState("");
-    const [statusQuery, setStatusQuery] = useState("");
+    const [statusQuery, setStatusQuery] = useState("Attending");
     const [houseQuery, setHouseQuery] = useState({
         Gryffindor: true,
         Ravenclaw: true,
