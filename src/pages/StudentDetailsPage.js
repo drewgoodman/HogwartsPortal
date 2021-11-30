@@ -71,7 +71,7 @@ function StudentDetailsPage({ history }) {
                 </Button>
                 <Toolbar />
                 <Grid container spacing={4} justify="center">
-                    <Grid item xs={12} sm={12} md={4}>
+                    <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
                         <Box
                             display="flex"
                             justifyContent="center"
@@ -83,9 +83,9 @@ function StudentDetailsPage({ history }) {
                             />
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={8}>
+                    <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
                         <Stack spacing={2}>
-                            <Typography variant="h4" component="div" gutterBottom noWrap={true} sx={{ textTransform: "uppercase" }}>
+                            <Typography variant="h4" component="div" gutterBottom noWrap={true} sx={{ textTransform: "uppercase", fontSize: { xs: '80%', sm: '100%' } }}>
                                 {student.firstName} {student.lastName}
                             </Typography>
                             <StudentChipBadges student={student} />

@@ -6,15 +6,8 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import Toolbar from '@mui/material/Toolbar';
-
-import Switch from '@mui/material/Switch';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-
 
 // Material UI Icons
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
@@ -89,7 +82,7 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
     return (
         <Box
             component="nav"
-            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+            sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
             aria-label="menu options"
         >
             {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -102,7 +95,7 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
                     keepMounted: true, // Better open performance on mobile.
                 }}
                 sx={{
-                    display: { xs: 'block', sm: 'none' },
+                    display: { xs: 'block', md: 'none' },
                     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                 }}
             >
@@ -111,7 +104,7 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
             <Drawer
                 variant="permanent"
                 sx={{
-                    display: { xs: 'none', sm: 'block' },
+                    display: { xs: 'none', md: 'block' },
                     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                 }}
                 open

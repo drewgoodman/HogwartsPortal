@@ -122,6 +122,7 @@ function StudentFilters({
                                 houseList.map((house, index) => (
                                     <FormControlLabel
                                         control={<Checkbox />}
+                                        key={`house-filter-${index}`}
                                         label={house}
                                         labelPlacement="bottom"
                                         checked={houseQuery[`${house}`]}

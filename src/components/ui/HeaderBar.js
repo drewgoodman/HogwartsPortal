@@ -11,8 +11,8 @@ function HeaderBar({ drawerWidth, handleDrawerToggle }) {
         <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
+          width: { md: `calc(100% - ${drawerWidth}px)` },
+          ml: { md: `${drawerWidth}px` },
         }}
       >
         <Toolbar>
@@ -21,11 +21,11 @@ function HeaderBar({ drawerWidth, handleDrawerToggle }) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { md: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' }, flexGrow: 1 }} >
+          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }} >
             Hogwarts Faculty Portal
           </Typography>
         </Toolbar>
