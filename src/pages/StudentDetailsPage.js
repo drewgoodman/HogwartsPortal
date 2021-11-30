@@ -85,7 +85,7 @@ function StudentDetailsPage({ history }) {
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
                         <Stack spacing={2}>
-                            <Typography variant="h4" component="div" gutterBottom noWrap={true} sx={{ textTransform: "uppercase", fontSize: { xs: '80%', sm: '100%' } }}>
+                            <Typography variant="h5" component="div" gutterBottom noWrap={true} sx={{ textTransform: "uppercase" }}>
                                 {student.firstName} {student.lastName}
                             </Typography>
                             <StudentChipBadges student={student} />
@@ -187,6 +187,7 @@ function StudentDetailsPage({ history }) {
                                                             value={courseValue}
                                                             index={index}
                                                             course={course}
+                                                            key={`course-info-${index}`}
                                                         />)
                                                 }
                                             </Box>

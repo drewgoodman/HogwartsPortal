@@ -34,7 +34,7 @@ function TagCreateModal() {
             open={tagCreateModalOpen}
             onClose={handleCloseModal}
             aria-labelledby="tag-update-title"
-            aria-labelledby="tag-update-description"
+            aria-describedby="tag-update-description"
         >
             <DialogTitle id="tag-update-title">
                 {"Create New Tag"}

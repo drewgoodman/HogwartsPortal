@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { pinStudent, unpinStudent, openSucessSnackbar, openSuccessSnackbar } from '../../actions/dashboardActions';
+import { pinStudent, unpinStudent, openSuccessSnackbar } from '../../actions/dashboardActions';
 
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';

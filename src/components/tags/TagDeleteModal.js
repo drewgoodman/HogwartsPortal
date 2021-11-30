@@ -29,7 +29,7 @@ function TagDeleteModal() {
             open={tagDeleteModalOpen}
             onClose={handleCloseModal}
             aria-labelledby="tag-update-title"
-            aria-labelledby="tag-update-description"
+            aria-describedby="tag-update-description"
         >
             <DialogTitle id="tag-update-title">
                 {"Delete this tag?"}
