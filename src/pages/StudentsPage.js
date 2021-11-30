@@ -16,7 +16,7 @@ function StudentsPage() {
     const dispatch = useDispatch()
 
     const studentList = useSelector(state => state.studentList)
-    const { students, loading: studentLoading, error: studentError } = studentList
+    const { students, loading: studentLoading } = studentList
 
     const [nameQuery, setNameQuery] = useState("");
     const [tagQuery, setTagQuery] = useState("");

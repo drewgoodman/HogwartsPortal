@@ -34,7 +34,7 @@ function StudentFilters({
 
     const tags = useSelector(state => state.tags)
     const studentNames = useSelector(state => state.studentList.studentNames)
-    const { loading, error, tagsList } = tags
+    const { loading, tagsList } = tags
     
 
     useEffect(() => {

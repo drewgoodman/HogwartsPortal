@@ -44,7 +44,7 @@ function StudentDetailsPage({ history }) {
     const dispatch = useDispatch();
 
     const studentDetails = useSelector(state => state.studentDetails);
-    const { loading, error, student } = studentDetails
+    const { loading, student } = studentDetails
 
     const handleTagDelete = (tagData) => {
         dispatch(openTagDeleteModal(tagData))
