@@ -9,12 +9,15 @@ import ListSubheader from '@mui/material/ListSubheader';
 import Toolbar from '@mui/material/Toolbar';
 
 // Material UI Icons
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+// import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import CakeIcon from '@mui/icons-material/Cake';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import DataObjectIcon from '@mui/icons-material/DataObject';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
+import InfoIcon from '@mui/icons-material/Info';
+// import LoginIcon from '@mui/icons-material/Login';
+// import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import SchoolIcon from '@mui/icons-material/School';
 
@@ -27,35 +30,13 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
         <div>
             <Toolbar />
             <Divider />
-            <List>
-                <SideBarButton
-                    buttonIcon={<PersonIcon />}
-                    menuText="Students"
-                    buttonLink="/students/"
-                />
-                <SideBarButton
-                    buttonIcon={<SchoolIcon />}
-                    menuText="Courses"
-                    buttonLink="/courses/"
-                />
-                <SideBarButton
-                    buttonIcon={<EmojiEventsIcon />}
-                    menuText="Organizations"
-                    buttonLink="/organizations/"
-                />
-                <SideBarButton
-                    buttonIcon={<CakeIcon />}
-                    menuText="Birthdays"
-                    buttonLink="/birthdays/"
-                />
-            </List>
             <List subheader={<ListSubheader>Account</ListSubheader>}>
                 <SideBarButton
                     buttonIcon={<DashboardIcon />}
                     menuText="To Dashboard"
                     buttonLink="/"
                 />
-                <SideBarButton
+                {/* <SideBarButton
                     buttonIcon={<LogoutIcon />}
                     menuText="Logout"
                     buttonLink="/logout/"
@@ -69,6 +50,50 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
                     buttonIcon={<AppRegistrationIcon />}
                     menuText="Create Account"
                     buttonLink="/register/"
+                /> */}
+            </List>
+            <List subheader={<ListSubheader>Students</ListSubheader>}>
+                <SideBarButton
+                    buttonIcon={<PersonIcon />}
+                    menuText="Student Roster"
+                    buttonLink="/students/"
+                />
+                <SideBarButton
+                    buttonIcon={<CakeIcon />}
+                    menuText="Birthdays"
+                    buttonLink="/birthdays/"
+                />
+                <SideBarButton
+                    buttonIcon={<EmojiEventsIcon />}
+                    menuText="Organizations"
+                    buttonLink="/organizations/"
+                />
+            </List>
+            <List subheader={<ListSubheader>Faculty Tools</ListSubheader>}>
+                <SideBarButton
+                    buttonIcon={<SchoolIcon />}
+                    menuText="Courses"
+                    buttonLink="/courses/"
+                />
+            </List>
+
+            <List subheader={<ListSubheader>App Info</ListSubheader>}>
+                <SideBarButton
+                    buttonIcon={<InfoIcon />}
+                    menuText="About"
+                    buttonLink="/about/"
+                />
+                <SideBarButton
+                    buttonIcon={<GitHubIcon />}
+                    menuText="See Front-End Code"
+                    buttonLink="https://github.com/drewgoodman/HogwartsPortal"
+                    outLink={true}
+                />
+                <SideBarButton
+                    buttonIcon={<DataObjectIcon />}
+                    menuText="See Restful API Code"
+                    buttonLink="https://github.com/drewgoodman/Hogwarts-StudentProfileAPI"
+                    outLink={true}
                 />
             </List>
             <List subheader={<ListSubheader>Settings</ListSubheader>}>

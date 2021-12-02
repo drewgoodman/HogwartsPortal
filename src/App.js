@@ -17,6 +17,7 @@ import HomePage from './pages/HomePage';
 import StudentsPage from './pages/StudentsPage';
 import StudentDetailsPage from './pages/StudentDetailsPage';
 import CoursesPage from './pages/CoursesPage';
+import CourseDetailsPage from './pages/CourseDetailsPage';
 import OrganizationsPage from './pages/OrganizationsPage';
 
 const drawerWidth = 280;
@@ -61,6 +62,7 @@ function App(props) {
               <Route path="/students" element={<StudentsPage />} />
               <Route path="/student/:id" element={<StudentDetailsPage />} />
               <Route path="/courses" element={<CoursesPage />} />
+              <Route path="/course/:id" element={<CourseDetailsPage />} />
               <Route path="/organizations" element={<OrganizationsPage />} />
             </Routes>
           </Box>

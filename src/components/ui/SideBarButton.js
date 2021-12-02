@@ -6,12 +6,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-function SideBarButton({ buttonIcon, menuText, buttonLink }) {
+function SideBarButton({ buttonIcon, menuText, buttonLink, outLink=false }) {
     return (
         <ListItem
             button
-            component={RouterLink}
+            component={outLink ? "a" : RouterLink}
             to={buttonLink}
+            href={buttonLink}
+            target={outLink ? "_blank" : ""}
         >
             <ListItemIcon>
                 {buttonIcon}
