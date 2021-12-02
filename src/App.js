@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
@@ -27,14 +27,14 @@ function App(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const theme = React.useMemo(
+  const theme = useMemo(
     () =>
       createTheme({
         palette: {
           mode: darkModeEnabled? 'dark': 'light',
         },
       }),
-    [darkModeEnabled],
+    [darkModeEnabled]
   );
 
   const handleDrawerToggle = () => {

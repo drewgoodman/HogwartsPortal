@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useMemo } from 'react'
+
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 
 function StudentCourseTabPanel(props) {
+
     const { value, index, course } = props;
 
     const getGradeAverage = (grades) => {
@@ -24,7 +26,9 @@ function StudentCourseTabPanel(props) {
 
     }
 
-    const gradeAverage = getGradeAverage(course.grades)
+    const gradeAverage = useMemo(() => {
+        return getGradeAverage(course.grades)
+    }, [course.grades])
 
     return (
         <div
