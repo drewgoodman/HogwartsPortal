@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link as RouterLink } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getCourseDetails } from '../actions/courseActions'
+
+import Button from '@mui/material/Button';
 
 import Loader from '../components/ui/Loader';
 
@@ -22,7 +24,13 @@ function CourseDetailsPage() {
 
     return (
         loading ? <Loader /> : (
+            <div>
+
+<Button variant="outlined" component={RouterLink} to="/courses/">
+                    &#8592; All Courses
+                </Button>
             <h1>{course.name}</h1>
+            </div>
         )
     )
 }

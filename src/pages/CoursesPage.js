@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Link from '@mui/material/Link';
+import { Link as RouterLink } from 'react-router-dom';
+
+import Typography from '@mui/material/Typography';
 
 import { listCourses } from '../actions/courseActions';
 import { numToNthYear } from '../utils.js/studentUtils';
@@ -33,7 +37,9 @@ function CoursesPage() {
                                 courses
                                     ?.filter(course => course.recommendedYear === year)
                                     .map(course =>
-                                        <div>{course.name}</div>
+                                        <Link color="inherit" underline="none" component={RouterLink} to={`/course/${course.id}`}>
+                                            <Typography variant="body1" component="div" noWrap={true}>{course.name}</Typography>
+                                        </Link>
                                     )
                             }
                         </div>
