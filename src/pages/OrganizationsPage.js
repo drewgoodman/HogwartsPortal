@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 function OrganizationsPage() {
     return (
-        <React.Fragment>
+        <Fragment>
             <h1>Organizations</h1>
-        </React.Fragment>
+        </Fragment>
     )
 }
 

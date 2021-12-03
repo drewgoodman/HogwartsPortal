@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { useParams, Link as RouterLink } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,12 +22,12 @@ function CourseDetailsPage() {
 
     return (
         loading ? <Loader /> : (
-            <React.Fragment>
+            <Fragment>
                 <Button variant="outlined" component={RouterLink} to="/courses/">
                     &#8592; All Courses
                 </Button>
                 <h1>{course.name}</h1>
-            </React.Fragment>
+            </Fragment>
         )
     )
 }

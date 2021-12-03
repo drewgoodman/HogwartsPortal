@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
@@ -24,14 +24,14 @@ function CoursesPage() {
     }, [dispatch])
 
     return (
-        <React.Fragment>
+        <Fragment>
             <h1>Courses</h1>
             {courseLoading && <Loader />}
             {
                 courseYearList.map(year => {
                     const yearText = numToNthYear(year)
                     return (
-                        <React.Fragment>
+                        <Fragment>
                             <h5>{yearText} Year Classes</h5>
                             {
                                 courses
@@ -42,11 +42,11 @@ function CoursesPage() {
                                         </Link>
                                     )
                             }
-                        </React.Fragment>
+                        </Fragment>
                     )
                 })
             }
-        </React.Fragment>
+        </Fragment>
     )
 }
 

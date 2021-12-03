@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 // Material UI Components
 import Box from '@mui/material/Box';
@@ -27,7 +27,7 @@ import DarkModeToggle from './DarkModeToggle';
 function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
 
     const drawer = (
-        <React.Fragment>
+        <Fragment>
             <Toolbar />
             <Divider />
             <List subheader={<ListSubheader>Account</ListSubheader>}>
@@ -99,7 +99,7 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
             <List subheader={<ListSubheader>Settings</ListSubheader>}>
                 <DarkModeToggle />
             </List>
-        </React.Fragment>
+        </Fragment>
     );
 
 

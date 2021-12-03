@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { useParams, Link as RouterLink } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -135,7 +135,7 @@ function StudentDetailsPage({ history }) {
                                 student.status === "ATTENDING" ?
                                     student.courses.length === 0 ?
                                     (
-                                        <React.Fragment>Not currently enrolled in any courses.</React.Fragment>
+                                        <Fragment>Not currently enrolled in any courses.</Fragment>
                                     ) : (
                                         <Paper>
                                             <Box sx={{ bgcolor: 'background.paper' }}>
@@ -193,7 +193,7 @@ function StudentDetailsPage({ history }) {
                                             </Box>
                                         </Paper>
                                     ) : (
-                                        <React.Fragment> Not a current student at Hogwarts.</React.Fragment>
+                                        <Fragment> Not a current student at Hogwarts.</Fragment>
                                     )
                             }
                         </Stack>

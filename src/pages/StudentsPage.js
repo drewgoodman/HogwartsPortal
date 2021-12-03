@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Container from '@mui/material/Container';
@@ -72,7 +72,7 @@ function StudentsPage() {
     }, [dispatch])
 
     return (
-        <React.Fragment>
+        <Fragment>
             <h1>Student Roster</h1>
             <StudentFilters
                 nameQuery={nameQuery}
@@ -98,7 +98,7 @@ function StudentsPage() {
                     }
                 </Grid>
             </Container>
-        </React.Fragment>
+        </Fragment>
     )
 }
 

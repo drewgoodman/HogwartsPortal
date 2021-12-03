@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, Fragment } from 'react'
 
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
@@ -31,7 +31,7 @@ function StudentCourseTabPanel(props) {
     }, [course.grades])
 
     return (
-        <React.Fragment
+        <div
             role="tabpanel"
             hidden={value !== index}
             aria-labelledby={`student-course-panel-${index}`}
@@ -45,7 +45,7 @@ function StudentCourseTabPanel(props) {
                 
                     {
                         course.grades.length === 0 ? (
-                            <React.Fragment>No grade data available.</React.Fragment>
+                            <Fragment>No grade data available.</Fragment>
                         ) : (
 
                             <TableContainer>
@@ -71,7 +71,7 @@ function StudentCourseTabPanel(props) {
                         )
                     }
             </Stack>
-        </React.Fragment>
+        </div>
     )
 }
 
