@@ -27,7 +27,7 @@ import DarkModeToggle from './DarkModeToggle';
 function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
 
     const drawer = (
-        <div>
+        <React.Fragment>
             <Toolbar />
             <Divider />
             <List subheader={<ListSubheader>Account</ListSubheader>}>
@@ -99,7 +99,7 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
             <List subheader={<ListSubheader>Settings</ListSubheader>}>
                 <DarkModeToggle />
             </List>
-        </div>
+        </React.Fragment>
     );
 
 

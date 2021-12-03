@@ -31,7 +31,7 @@ function StudentCourseTabPanel(props) {
     }, [course.grades])
 
     return (
-        <div
+        <React.Fragment
             role="tabpanel"
             hidden={value !== index}
             aria-labelledby={`student-course-panel-${index}`}
@@ -45,7 +45,7 @@ function StudentCourseTabPanel(props) {
                 
                     {
                         course.grades.length === 0 ? (
-                            <div>No grade data available.</div>
+                            <React.Fragment>No grade data available.</React.Fragment>
                         ) : (
 
                             <TableContainer>
@@ -71,7 +71,7 @@ function StudentCourseTabPanel(props) {
                         )
                     }
             </Stack>
-        </div>
+        </React.Fragment>
     )
 }
 

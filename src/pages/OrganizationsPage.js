@@ -2,9 +2,9 @@ import React from 'react'
 
 function OrganizationsPage() {
     return (
-        <div>
+        <React.Fragment>
             <h1>Organizations</h1>
-        </div>
+        </React.Fragment>
     )
 }
 

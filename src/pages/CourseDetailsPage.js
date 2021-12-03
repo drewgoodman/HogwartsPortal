@@ -10,10 +10,8 @@ import Loader from '../components/ui/Loader';
 
 function CourseDetailsPage() {
 
-
     const match = useParams();
     const dispatch = useDispatch();
-
 
     const courseDetails = useSelector(state => state.courseDetails);
     const { loading, course } = courseDetails
@@ -24,13 +22,12 @@ function CourseDetailsPage() {
 
     return (
         loading ? <Loader /> : (
-            <div>
-
-<Button variant="outlined" component={RouterLink} to="/courses/">
+            <React.Fragment>
+                <Button variant="outlined" component={RouterLink} to="/courses/">
                     &#8592; All Courses
                 </Button>
-            <h1>{course.name}</h1>
-            </div>
+                <h1>{course.name}</h1>
+            </React.Fragment>
         )
     )
 }

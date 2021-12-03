@@ -24,14 +24,14 @@ function CoursesPage() {
     }, [dispatch])
 
     return (
-        <div>
+        <React.Fragment>
             <h1>Courses</h1>
             {courseLoading && <Loader />}
             {
                 courseYearList.map(year => {
                     const yearText = numToNthYear(year)
                     return (
-                        <div>
+                        <React.Fragment>
                             <h5>{yearText} Year Classes</h5>
                             {
                                 courses
@@ -42,11 +42,11 @@ function CoursesPage() {
                                         </Link>
                                     )
                             }
-                        </div>
+                        </React.Fragment>
                     )
                 })
             }
-        </div>
+        </React.Fragment>
     )
 }
 

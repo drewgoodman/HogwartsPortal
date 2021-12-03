@@ -135,7 +135,7 @@ function StudentDetailsPage({ history }) {
                                 student.status === "ATTENDING" ?
                                     student.courses.length === 0 ?
                                     (
-                                        <div>Not currently enrolled in any courses.</div>
+                                        <React.Fragment>Not currently enrolled in any courses.</React.Fragment>
                                     ) : (
                                         <Paper>
                                             <Box sx={{ bgcolor: 'background.paper' }}>
@@ -193,7 +193,7 @@ function StudentDetailsPage({ history }) {
                                             </Box>
                                         </Paper>
                                     ) : (
-                                        <div> Not a current student at Hogwarts.</div>
+                                        <React.Fragment> Not a current student at Hogwarts.</React.Fragment>
                                     )
                             }
                         </Stack>

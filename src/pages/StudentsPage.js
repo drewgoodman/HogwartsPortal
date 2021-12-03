@@ -72,7 +72,7 @@ function StudentsPage() {
     }, [dispatch])
 
     return (
-        <div>
+        <React.Fragment>
             <h1>Student Roster</h1>
             <StudentFilters
                 nameQuery={nameQuery}
@@ -98,7 +98,7 @@ function StudentsPage() {
                     }
                 </Grid>
             </Container>
-        </div>
+        </React.Fragment>
     )
 }
 
