@@ -15,11 +15,11 @@ function StudentCourseTabPanel(props) {
 
     const getGradeAverage = (grades) => {
 
-        if ( grades.length > 0) {
+        if (grades.length > 0) {
             let gradeTotal = grades
                 .map(grade => parseInt(grade.grade))
                 .reduce((a, b) => a + b, 0);
-    
+
             return gradeTotal / grades.length;
         }
         return 0;
@@ -36,21 +36,21 @@ function StudentCourseTabPanel(props) {
             hidden={value !== index}
             aria-labelledby={`student-course-panel-${index}`}
         >
-            <Stack spacing={2} sx={{padding:"10px"}}>
-                        <Typography variant="h6" component="div" noWrap={true} sx={{ textTransform: "uppercase" }}>
-                            {course.name}
-                        </Typography>
-                        Overall Grade Average: {gradeAverage.toFixed(2)}%
+            <Stack spacing={2} sx={{ padding: "10px" }}>
+                <Typography variant="h6" component="div" noWrap={true} sx={{ textTransform: "uppercase" }}>
+                    {course.name}
+                </Typography>
+                {
+                    course.grades.length === 0 ? (
+                        <Fragment>No grade data available.</Fragment>
+                    ) : (
 
-                
-                    {
-                        course.grades.length === 0 ? (
-                            <Fragment>No grade data available.</Fragment>
-                        ) : (
-
-                            <TableContainer>
+                        <TableContainer>
                             <Table sx={{}} aria-label="course grade table">
                                 <TableHead>
+                                    <TableRow>
+                                        Overall Grade Average: {gradeAverage.toFixed(2)}%
+                                    </TableRow>
                                     <TableRow>
                                         <TableCell>Test Date</TableCell>
                                         <TableCell>Score</TableCell>
@@ -68,8 +68,8 @@ function StudentCourseTabPanel(props) {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        )
-                    }
+                    )
+                }
             </Stack>
         </div>
     )

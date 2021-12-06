@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect, useMemo } from 'react'
 import { useParams, Link as RouterLink } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -62,6 +62,27 @@ function StudentDetailsPage({ history }) {
         setCourseValue(newValue)
     }
 
+    const studentInfoList = useMemo(() => {
+        return [
+            {
+                title: "Status: ",
+                data: student.status || "Not specified"
+            },
+            {
+                title: "Date of Birth:",
+                data: student.birthday || "Not specified"
+            },
+            {
+                title: "Skill: ",
+                data: student.skill || "Not specified"
+            },
+            {
+                title: "Enroll Year: ",
+                data: student.enrollYear || "Not specificed"
+            }
+        ]
+    }, [student])
+
 
     return (
         loading ? <Loader /> : (
@@ -89,10 +110,25 @@ function StudentDetailsPage({ history }) {
                                 {student.firstName} {student.lastName}
                             </Typography>
                             <StudentChipBadges student={student} />
-                            Student Data Goes Here
-                            
-
-                            <Box
+                            <Divider />
+                            <Grid container spacing={3} sx={{ paddingLeft: 1 }}>
+                                {
+                                    studentInfoList?.map(info => (
+                                        <Fragment>
+                                            <Grid item xs={12} sm={2}>
+                                                <strong>{info.title}</strong>
+                                            </Grid>
+                                            <Grid item xs={12} sm={10}>
+                                                {info.data}
+                                            </Grid>
+                                        </Fragment>
+                                    ))
+                                }
+                                <Grid item xs={12} sm={2}>
+                                    <strong>Tags: </strong>
+                                </Grid>
+                                <Grid item xs={12} sm={10}>
+                                <Box
                                 sx={{
                                     display: 'flex',
                                     justifyContent: {
@@ -130,69 +166,73 @@ function StudentDetailsPage({ history }) {
                                     />
                                 </TagListItem>
                             </Box>
+                                </Grid>
+                            </Grid>
+
+
                             <Divider />
                             {
                                 student.status === "ATTENDING" ?
                                     student.courses.length === 0 ?
-                                    (
-                                        <Fragment>Not currently enrolled in any courses.</Fragment>
-                                    ) : (
-                                        <Paper>
-                                            <Box sx={{ bgcolor: 'background.paper' }}>
-                                                <Typography variant="h5" component="div">
-                                                    Enrolled Classes
-                                                </Typography>
+                                        (
+                                            <Fragment>Not currently enrolled in any courses.</Fragment>
+                                        ) : (
+                                            <Paper>
+                                                <Box sx={{ bgcolor: 'background.paper' }}>
+                                                    <Typography variant="h5" component="div">
+                                                        Enrolled Classes
+                                                    </Typography>
 
-                                                {/* TABS DESKTOP ONLY */}
-                                                <Tabs
-                                                    value={courseValue}
-                                                    onChange={handleCourseSelect}
-                                                    variant="scrollable"
-                                                    scrollButtons="auto"
-                                                    aria-label="scrollable classes"
-                                                    sx={{ display: { xs: 'none', sm: 'block' } }}
-                                                >
-                                                    {
-                                                        student.courses?.map((course, index) => (
-                                                            <Tab label={course.name} value={index} key={`course-tab-${index}`} />
-                                                        ))
-                                                    }
-                                                </Tabs>
-
-                                                {/* DROPDOWN MOBILE ONLY */}
-                                                <FormControl
-                                                    sx={{ display: { sm: 'none' } }}
-                                                    fullWidth
-                                                >
-                                                    <InputLabel id="student-course-filter">Course Info</InputLabel>
-                                                    <Select
-                                                        labelId="filter-student-course-label"
-                                                        id="filter-student-course"
+                                                    {/* TABS DESKTOP ONLY */}
+                                                    <Tabs
                                                         value={courseValue}
-                                                        label="Course Info"
-                                                        onChange={(e) => handleCourseSelect(e, e.target.value)}
+                                                        onChange={handleCourseSelect}
+                                                        variant="scrollable"
+                                                        scrollButtons="auto"
+                                                        aria-label="scrollable classes"
+                                                        sx={{ display: { xs: 'none', sm: 'block' } }}
                                                     >
                                                         {
-                                                            student.courses?.map((course, index) => <MenuItem value={index} key={`course-dropdown-${index}`}>{course.name}</MenuItem>)
+                                                            student.courses?.map((course, index) => (
+                                                                <Tab label={course.name} value={index} key={`course-tab-${index}`} />
+                                                            ))
                                                         }
-                                                    </Select>
-                                                </FormControl>
+                                                    </Tabs>
 
-                                            </Box>
-                                            <Box>
-
-                                                {
-                                                    student.courses?.map((course, index) =>
-                                                        <StudentCourseTabPanel
+                                                    {/* DROPDOWN MOBILE ONLY */}
+                                                    <FormControl
+                                                        sx={{ display: { sm: 'none' } }}
+                                                        fullWidth
+                                                    >
+                                                        <InputLabel id="student-course-filter">Course Info</InputLabel>
+                                                        <Select
+                                                            labelId="filter-student-course-label"
+                                                            id="filter-student-course"
                                                             value={courseValue}
-                                                            index={index}
-                                                            course={course}
-                                                            key={`course-info-${index}`}
-                                                        />)
-                                                }
-                                            </Box>
-                                        </Paper>
-                                    ) : (
+                                                            label="Course Info"
+                                                            onChange={(e) => handleCourseSelect(e, e.target.value)}
+                                                        >
+                                                            {
+                                                                student.courses?.map((course, index) => <MenuItem value={index} key={`course-dropdown-${index}`}>{course.name}</MenuItem>)
+                                                            }
+                                                        </Select>
+                                                    </FormControl>
+
+                                                </Box>
+                                                <Box>
+
+                                                    {
+                                                        student.courses?.map((course, index) =>
+                                                            <StudentCourseTabPanel
+                                                                value={courseValue}
+                                                                index={index}
+                                                                course={course}
+                                                                key={`course-info-${index}`}
+                                                            />)
+                                                    }
+                                                </Box>
+                                            </Paper>
+                                        ) : (
                                         <Fragment> Not a current student at Hogwarts.</Fragment>
                                     )
                             }

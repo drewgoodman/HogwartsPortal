@@ -2,19 +2,19 @@ import React, { Fragment } from 'react'
 
 // Material UI Components
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import Toolbar from '@mui/material/Toolbar';
+import { useTheme } from '@mui/material/styles';
 
 // Material UI Icons
 // import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import CakeIcon from '@mui/icons-material/Cake';
+// import CakeIcon from '@mui/icons-material/Cake';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DataObjectIcon from '@mui/icons-material/DataObject';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+// import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import InfoIcon from '@mui/icons-material/Info';
 // import LoginIcon from '@mui/icons-material/Login';
 // import LogoutIcon from '@mui/icons-material/Logout';
@@ -24,58 +24,44 @@ import SchoolIcon from '@mui/icons-material/School';
 import SideBarButton from './SideBarButton';
 import DarkModeToggle from './DarkModeToggle';
 
-function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
+import TestBanner from '../../static/img/background/sidebar-bg.jpg';
+
+function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container, darkModeEnabled=false }) {
+
+    const theme = useTheme();
 
     const drawer = (
         <Fragment>
             <Toolbar />
-            <Divider />
-            <List subheader={<ListSubheader>Account</ListSubheader>}>
+            <Toolbar />
+            <List subheader={<ListSubheader>Faculty Tools</ListSubheader>}>
                 <SideBarButton
                     buttonIcon={<DashboardIcon />}
-                    menuText="To Dashboard"
+                    menuText="Dashboard"
                     buttonLink="/"
                 />
-                {/* <SideBarButton
-                    buttonIcon={<LogoutIcon />}
-                    menuText="Logout"
-                    buttonLink="/logout/"
-                />
-                <SideBarButton
-                    buttonIcon={<LoginIcon />}
-                    menuText="Login"
-                    buttonLink="/login/"
-                />
-                <SideBarButton
-                    buttonIcon={<AppRegistrationIcon />}
-                    menuText="Create Account"
-                    buttonLink="/register/"
-                /> */}
-            </List>
-            <List subheader={<ListSubheader>Students</ListSubheader>}>
                 <SideBarButton
                     buttonIcon={<PersonIcon />}
                     menuText="Student Roster"
                     buttonLink="/students/"
                 />
-                <SideBarButton
+                {/* <SideBarButton
                     buttonIcon={<CakeIcon />}
                     menuText="Birthdays"
                     buttonLink="/birthdays/"
-                />
+                /> */}
                 <SideBarButton
+                    buttonIcon={<SchoolIcon />}
+                    menuText="Course Catalogue"
+                    buttonLink="/courses/"
+                />
+                {/* <SideBarButton
                     buttonIcon={<EmojiEventsIcon />}
                     menuText="Organizations"
                     buttonLink="/organizations/"
-                />
+                /> */}
             </List>
-            <List subheader={<ListSubheader>Faculty Tools</ListSubheader>}>
-                <SideBarButton
-                    buttonIcon={<SchoolIcon />}
-                    menuText="Courses"
-                    buttonLink="/courses/"
-                />
-            </List>
+            <Toolbar />
 
             <List subheader={<ListSubheader>App Info</ListSubheader>}>
                 <SideBarButton
@@ -96,6 +82,7 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
                     outLink={true}
                 />
             </List>
+            <Toolbar />
             <List subheader={<ListSubheader>Settings</ListSubheader>}>
                 <DarkModeToggle />
             </List>
@@ -120,7 +107,22 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
                 }}
                 sx={{
                     display: { xs: 'block', md: 'none' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    '& .MuiDrawer-paper': { 
+                        boxSizing: 'border-box',
+                        width: drawerWidth,
+                        backgroundImage: `url(${TestBanner})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center center',
+                        '&:before': {
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            content: '""',
+                            display: 'block',
+                            background: theme.palette.background.paper,
+                            opacity: '0.8'
+                        }
+                     },
                 }}
             >
                 {drawer}
@@ -129,7 +131,21 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container }) {
                 variant="permanent"
                 sx={{
                     display: { xs: 'none', md: 'block' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box',
+                    width: drawerWidth,
+                    backgroundImage: `url(${TestBanner})`,
+                    backgroundSize: 'cover',
+                    borderRight: `1px solid ${
+                        theme.palette.background.paper}`,
+                    '&:before': {
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        content: '""',
+                        display: 'block',
+                        background: theme.palette.background.paper,
+                        opacity: '0.8'
+                    } },
                 }}
                 open
             >

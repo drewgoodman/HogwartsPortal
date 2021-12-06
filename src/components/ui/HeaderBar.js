@@ -25,7 +25,7 @@ function HeaderBar({ drawerWidth, handleDrawerToggle }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }} >
+          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1, fontFamily: "Harry Potter" }} >
             Hogwarts Faculty Portal
           </Typography>
         </Toolbar>

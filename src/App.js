@@ -51,7 +51,7 @@ function App(props) {
         <Box className="App" sx={{ display: 'flex' }}>
           <CssBaseline />
           <HeaderBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} />
-          <SideBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} container={container} />
+          <SideBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} container={container} darkModeEnabled={darkModeEnabled} />
           <Box
             component="main"
             sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
