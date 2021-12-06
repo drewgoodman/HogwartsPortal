@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import DocumentTitle from 'react-document-title';
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
@@ -32,7 +33,7 @@ function App(props) {
     () =>
       createTheme({
         palette: {
-          mode: darkModeEnabled? 'dark': 'light',
+          mode: darkModeEnabled ? 'dark' : 'light',
         },
       }),
     [darkModeEnabled]
@@ -47,31 +48,33 @@ function App(props) {
 
   return (
     <Router>
-      <ThemeProvider theme={theme}>
-        <Box className="App" sx={{ display: 'flex' }}>
-          <CssBaseline />
-          <HeaderBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} />
-          <SideBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} container={container} darkModeEnabled={darkModeEnabled} />
-          <Box
-            component="main"
-            sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-          >
-            <Toolbar />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/students" element={<StudentsPage />} />
-              <Route path="/student/:id" element={<StudentDetailsPage />} />
-              <Route path="/courses" element={<CoursesPage />} />
-              <Route path="/course/:id" element={<CourseDetailsPage />} />
-              <Route path="/organizations" element={<OrganizationsPage />} />
-            </Routes>
-          </Box>
+      <DocumentTitle title="Hogwarts Faculty Portal">
+        <ThemeProvider theme={theme}>
+          <Box className="App" sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <HeaderBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} />
+            <SideBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} container={container} darkModeEnabled={darkModeEnabled} />
+            <Box
+              component="main"
+              sx={{ flexGrow: 1, p: { xs: 3, md: 6 }, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+            >
+              <Toolbar />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/students" element={<StudentsPage />} />
+                <Route path="/student/:id" element={<StudentDetailsPage />} />
+                <Route path="/courses" element={<CoursesPage />} />
+                <Route path="/course/:id" element={<CourseDetailsPage />} />
+                <Route path="/organizations" element={<OrganizationsPage />} />
+              </Routes>
+            </Box>
 
-        </Box>
-        <SnackbarSuccess />
-        <TagCreateModal />
-        <TagDeleteModal />
-      </ThemeProvider>
+          </Box>
+          <SnackbarSuccess />
+          <TagCreateModal />
+          <TagDeleteModal />
+        </ThemeProvider>
+      </DocumentTitle>
     </Router>
   );
 }

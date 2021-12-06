@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
+import DocumentTitle from 'react-document-title';
 import { useDispatch, useSelector } from 'react-redux'
 
 import Container from '@mui/material/Container';
@@ -72,8 +73,9 @@ function StudentsPage() {
     }, [dispatch])
 
     return (
+        <DocumentTitle title="Student Roster">
         <Fragment>
-            <h1>Student Roster</h1>
+            <Toolbar />
             <StudentFilters
                 nameQuery={nameQuery}
                 setNameQuery={setNameQuery}
@@ -87,7 +89,7 @@ function StudentsPage() {
             <Toolbar />
             <Container maxWidth="lg">
                 {studentLoading && <Loader/> }
-                <Grid container spacing={3} alignItems="center" justifyContent="center">
+                <Grid container spacing={3}>
                     {
                         students
                             ?.filter(student => filterByName(student.firstName, student.lastName))
@@ -99,6 +101,8 @@ function StudentsPage() {
                 </Grid>
             </Container>
         </Fragment>
+
+        </DocumentTitle>
     )
 }
 

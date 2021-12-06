@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
+import DocumentTitle from 'react-document-title';
 import { useDispatch, useSelector } from 'react-redux'
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
@@ -24,6 +25,7 @@ function CoursesPage() {
     }, [dispatch])
 
     return (
+        <DocumentTitle title="Course Catalogue">
         <Fragment>
             <h1>Courses</h1>
             {courseLoading && <Loader />}
@@ -47,6 +49,8 @@ function CoursesPage() {
                 })
             }
         </Fragment>
+
+        </DocumentTitle>
     )
 }
 
