@@ -27,6 +27,15 @@ function CourseDetailsPage() {
                     &#8592; All Courses
                 </Button>
                 <h1>{course.name}</h1>
+                {
+                    course?.students ? (
+                        <Fragment>
+                            <h6>Students Enrolled: </h6>
+                        </Fragment>
+                    ) : (
+                        <Fragment>No students current enrolled.</Fragment>
+                    )
+                }
             </Fragment>
         )
     )
