@@ -74,33 +74,38 @@ function StudentsPage() {
 
     return (
         <DocumentTitle title="Student Roster">
-        <Fragment>
-            <Toolbar />
-            <StudentFilters
-                nameQuery={nameQuery}
-                setNameQuery={setNameQuery}
-                tagQuery={tagQuery}
-                setTagQuery={setTagQuery}
-                statusQuery={statusQuery}
-                setStatusQuery={setStatusQuery}
-                houseQuery={houseQuery}
-                setHouseQuery={setHouseQuery}
-             />
-            <Toolbar />
-            <Container maxWidth="lg">
-                {studentLoading && <Loader/> }
-                <Grid container spacing={3}>
-                    {
-                        students
-                            ?.filter(student => filterByName(student.firstName, student.lastName))
-                            .filter(student => filterByTag(student))
-                            .filter(student => filterByStatus(student))
-                            .filter(student => filterByHouse(student))
-                            ?.map(student => <StudentCard student={student} key={student.id} />)
-                    }
-                </Grid>
-            </Container>
-        </Fragment>
+            <Fragment>
+                <Toolbar />
+                <StudentFilters
+                    nameQuery={nameQuery}
+                    setNameQuery={setNameQuery}
+                    tagQuery={tagQuery}
+                    setTagQuery={setTagQuery}
+                    statusQuery={statusQuery}
+                    setStatusQuery={setStatusQuery}
+                    houseQuery={houseQuery}
+                    setHouseQuery={setHouseQuery}
+                />
+                <Toolbar />
+                <Container maxWidth="lg">
+                    {studentLoading && <Loader />}
+                    <Grid container spacing={3}>
+                        {
+                            students
+                                ?.filter(student => filterByName(student.firstName, student.lastName))
+                                .filter(student => filterByTag(student))
+                                .filter(student => filterByStatus(student))
+                                .filter(student => filterByHouse(student))
+                                ?.map(student => (
+
+                                    <Grid item sx={{ display: "block", width: { xs: "100%", sm: 320 } }} >
+                                        <StudentCard student={student} key={student.id} />
+                                    </Grid>
+                                ))
+                        }
+                    </Grid>
+                </Container>
+            </Fragment>
 
         </DocumentTitle>
     )

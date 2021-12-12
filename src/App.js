@@ -48,15 +48,15 @@ function App(props) {
 
   return (
     <Router>
-      <DocumentTitle title="Hogwarts Faculty Portal">
+      <DocumentTitle title="Hogwarts Faculty">
         <ThemeProvider theme={theme}>
-          <Box className="App" sx={{ display: 'flex' }}>
+          <Box className="App" sx={{ display: {sm: 'flex'} }}>
             <CssBaseline />
             <HeaderBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} />
             <SideBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} container={container} darkModeEnabled={darkModeEnabled} />
             <Box
               component="main"
-              sx={{ flexGrow: 1, p: { xs: 3, md: 6 }, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+              sx={{ flexGrow: 1, p: { xs: 3, md: 5}, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
               <Toolbar />
               <Routes>

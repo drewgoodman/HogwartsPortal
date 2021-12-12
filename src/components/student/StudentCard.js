@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
 
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -20,11 +19,10 @@ import StudentPinButton from './StudentPinButton';
 function StudentCard({ student }) {
 
     const enrollYear = student.enrollDate.split('-')[0];
-    const fullName = student.firstName + " " + student.lastName
+    const fullName = student.firstName + " " + student.lastName;
 
     return (
-        <Grid item >
-            <Card sx={{ width: { xs: "75vw", sm: 320} }}>
+            <Card sx={{ display: "block", width: "auto" }}>
                 <CardHeader
                     avatar={
                         <StudentHouseAvatar house={student.house} />
@@ -63,7 +61,6 @@ function StudentCard({ student }) {
                     </Button>
                 </List>
             </Card>
-        </Grid>
     )
 
 }
