@@ -20,8 +20,9 @@ import DarkModeToggle from './DarkModeToggle';
 
 import TestBanner from '../../static/img/background/sidebar-bg.jpg';
 
-function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container, darkModeEnabled=false }) {
+function SideBar(props) {
 
+    const { handleDrawerToggle, drawerWidth, mobileOpen, container } = props;
     const theme = useTheme();
 
     const drawer = (

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import DocumentTitle from 'react-document-title';
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
@@ -27,7 +27,8 @@ function App(props) {
 
   const darkModeEnabled = useSelector(state => state.dashboard.darkMode)
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
 
   const theme = useMemo(
     () =>
@@ -56,7 +57,13 @@ function App(props) {
             <SideBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} container={container} darkModeEnabled={darkModeEnabled} />
             <Box
               component="main"
-              sx={{ flexGrow: 1, p: { xs: 3, md: 5}, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+              sx={{
+                flexGrow: 1,
+                p: { xs: 3, md: 5},
+                width: { sm: `calc(100% - ${drawerWidth}px)` },
+                background: darkModeEnabled ? "#121212" : "#f4f4f4",
+                minHeight: "100vh"
+               }}
             >
               <Toolbar />
               <Routes>

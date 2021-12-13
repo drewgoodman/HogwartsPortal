@@ -22,12 +22,14 @@ const reducer = combineReducers({
 const pinnedStudentsLocalSetting = localStorage.getItem('pinnedStudents') ?
     JSON.parse(localStorage.getItem('pinnedStudents')): []
 
-const darkModeLocalSetting = localStorage.getItem('darkMode') || true;
+const darkModeLocalSetting = localStorage.getItem('darkMode') || null;
+
+const newDarkModeSetting = darkModeLocalSetting ? darkModeLocalSetting === 'true' ? true : false : true;
 
 const initialState = {
     dashboard: {
         pinnedStudents: pinnedStudentsLocalSetting,
-        darkMode: darkModeLocalSetting
+        darkMode: newDarkModeSetting
     }
 }
 

@@ -124,7 +124,7 @@ function StudentDetailsPage({ history }) {
                                         </Typography>
                                         <StudentChipBadges student={student} />
                                         <Divider />
-                                        <Grid container spacing={3} sx={{ paddingLeft: 1 }}>
+                                        <Grid container spacing={3} sx={{ paddingLeft: {xs: 0, sm: 1} }}>
                                             {
                                                 studentInfoList?.map(info => (
                                                     <Fragment>
