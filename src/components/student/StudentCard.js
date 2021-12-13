@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from '@mui/material/Link';
-import { Link as RouterLink } from 'react-router-dom';
+import { useMatch, useResolvedPath, Link as RouterLink } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -21,6 +21,8 @@ function StudentCard({ student }) {
 
     const enrollYear = student.enrollDate.split('-')[0];
     const fullName = student.firstName + " " + student.lastName;
+    const resolved = useResolvedPath('/');
+    const fromDashboard = useMatch({path: resolved.pathname, end: true});
 
     return (
         <Card sx={{ display: "block", width: "auto" }}>
@@ -29,7 +31,7 @@ function StudentCard({ student }) {
                     <StudentHouseAvatar house={student.house} />
                 }
                 title={
-                    <Link color="inherit" underline="none" component={RouterLink} to={`/student/${student.id}`}>
+                    <Link color="inherit" underline="none" component={RouterLink} to={`/student/${student.id}`} state={{ fromDashboard: fromDashboard ? true : false }}>
                         <Typography variant="h6" component="div" noWrap={true}>{fullName}</Typography>
                     </Link>
                 }
@@ -57,7 +59,7 @@ function StudentCard({ student }) {
                     />
                 </ListItem>
                 <CardActions>
-                    <Button size="small" sx={{ flexGrow: 1, justifyContent: "left" }} component={RouterLink} to={`/student/${student.id}`}>
+                    <Button size="small" sx={{ flexGrow: 1, justifyContent: "left" }} component={RouterLink} to={`/student/${student.id}`} state={{ fromDashboard: fromDashboard ? true : false }}>
                         More Info &#8594;
                     </Button>
                     <StudentPinButton studentId={student.id} sx={{

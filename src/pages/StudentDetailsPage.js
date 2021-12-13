@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect, useMemo } from 'react'
-import { useParams, Link as RouterLink } from 'react-router-dom'
+import { useLocation, useParams, Link as RouterLink } from 'react-router-dom'
 import DocumentTitle from 'react-document-title';
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -39,7 +39,7 @@ const TagListItem = styled('li')(({ theme }) => ({
     margin: theme.spacing(0.5),
 }));
 
-function StudentDetailsPage({ history }) {
+function StudentDetailsPage() {
 
     const [courseValue, setCourseValue] = useState(0)
 
@@ -48,6 +48,9 @@ function StudentDetailsPage({ history }) {
 
     const studentDetails = useSelector(state => state.studentDetails);
     const { loading, student } = studentDetails
+
+    const location = useLocation();
+    const fromDashboard = location.state?.fromDashboard || false;
 
     const handleTagDelete = (tagData) => {
         dispatch(openTagDeleteModal(tagData))
@@ -73,10 +76,15 @@ function StudentDetailsPage({ history }) {
             return `${NUM_TO_MONTHS[parseInt(birthMonth)]} ${birthDay}, ${birthYear}`;
         }
 
+        const getTitleCase = (text) => {
+            if (!text) { return "None specified" }
+            return text[0].toUpperCase() + text.substr(1).toLowerCase()
+        }
+
         return [
             {
                 title: "Status: ",
-                data: student.status || "Not specified"
+                data: getTitleCase(student.status) || "Not specified"
             },
             {
                 title: "Date of Birth:",
@@ -100,9 +108,17 @@ function StudentDetailsPage({ history }) {
                 {
                     loading ? <Loader /> : (
                         <Container maxWidth="lg">
-                            <Button variant="outlined" component={RouterLink} to="/students/">
-                                &#8592; All Students
-                            </Button>
+                            {
+                                fromDashboard ? (
+                                    <Button variant="outlined" component={RouterLink} to="/">
+                                        &#8592; Back to Dashboard
+                                    </Button>
+                                ) : (
+                                    <Button variant="outlined" component={RouterLink} to="/students/">
+                                        &#8592; All Students
+                                    </Button>
+                                )
+                            }
                             <Toolbar />
                             <Grid container spacing={4} justify="center">
                                 <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
@@ -124,14 +140,14 @@ function StudentDetailsPage({ history }) {
                                         </Typography>
                                         <StudentChipBadges student={student} />
                                         <Divider />
-                                        <Grid container spacing={3} sx={{ paddingLeft: {xs: 0, sm: 1} }}>
+                                        <Grid container spacing={3} sx={{ paddingLeft: { xs: 0, sm: 1 } }}>
                                             {
                                                 studentInfoList?.map(info => (
                                                     <Fragment>
                                                         <Grid item xs={12} sm={2}>
                                                             <strong>{info.title}</strong>
                                                         </Grid>
-                                                        <Grid item xs={12} sm={10}>
+                                                        <Grid item xs={12} sm={10} >
                                                             {info.data}
                                                         </Grid>
                                                     </Fragment>
@@ -150,7 +166,7 @@ function StudentDetailsPage({ history }) {
                                                         },
                                                         flexWrap: 'wrap',
                                                         listStyle: 'none',
-                                                        p: 0.5,
+                                                        p: 0.1,
                                                         m: 0
                                                     }}
                                                     component="ul"
@@ -192,7 +208,7 @@ function StudentDetailsPage({ history }) {
                                                     ) : (
                                                         <Paper>
                                                             <Box sx={{ bgcolor: 'background.paper' }}>
-                                                                <Typography variant="h5" component="div">
+                                                                <Typography variant="h5" component="div" sx={{ marginBottom: 3 }}>
                                                                     Enrolled Classes
                                                                 </Typography>
 
@@ -214,7 +230,7 @@ function StudentDetailsPage({ history }) {
 
                                                                 {/* DROPDOWN MOBILE ONLY */}
                                                                 <FormControl
-                                                                    sx={{ display: { sm: 'none' } }}
+                                                                    sx={{ marginBottom: 3, display: { sm: 'none' } }}
                                                                     fullWidth
                                                                 >
                                                                     <InputLabel id="student-course-filter">Course Info</InputLabel>
