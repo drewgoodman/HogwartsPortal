@@ -9,15 +9,9 @@ import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 
 // Material UI Icons
-// import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-// import CakeIcon from '@mui/icons-material/Cake';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DataObjectIcon from '@mui/icons-material/DataObject';
-// import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import InfoIcon from '@mui/icons-material/Info';
-// import LoginIcon from '@mui/icons-material/Login';
-// import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import SchoolIcon from '@mui/icons-material/School';
 
@@ -64,11 +58,6 @@ function SideBar({ handleDrawerToggle, drawerWidth, mobileOpen, container, darkM
             <Toolbar />
 
             <List subheader={<ListSubheader>App Info</ListSubheader>}>
-                <SideBarButton
-                    buttonIcon={<InfoIcon />}
-                    menuText="About"
-                    buttonLink="/about/"
-                />
                 <SideBarButton
                     buttonIcon={<GitHubIcon />}
                     menuText="See Front-End Code"

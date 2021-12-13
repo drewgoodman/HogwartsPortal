@@ -38,8 +38,7 @@ export const dashboardReducer = (state = {
         case DASHBOARD_SNACKBAR_CLOSE:
             return {
                 ...state,
-                successSnackbarOpen: false,
-                successSnackbarMessage: ""
+                successSnackbarOpen: false
             }
 
         default:

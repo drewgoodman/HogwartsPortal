@@ -87,7 +87,7 @@ function StudentsPage() {
                     setHouseQuery={setHouseQuery}
                 />
                 <Toolbar />
-                <Container maxWidth="lg">
+                <Container maxWidth="full">
                     {studentLoading && <Loader />}
                     <Grid container spacing={3}>
                         {
