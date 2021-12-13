@@ -1,8 +1,10 @@
 import React, { Fragment, useEffect } from 'react'
+import { Link as RouterLink } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 import { useDispatch, useSelector } from 'react-redux'
 
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 
@@ -66,36 +68,44 @@ function HomePage() {
                 <Toolbar />
                 <Container maxWidth="lg">
                     <h1>Pinned Profiles</h1>
-                        {studentLoading && <Loader />}
-                    <Swiper
-                        slidesPerView={1}
-                        spaceBetween={5}
-                        navigation
-                        centeredSlides={true}
-                        observer
-                        observeParents
-                        breakpoints={{
-                            "820": {
-                                "slidesPerView": 2
-                            },
-                            "1400": {
-                                "slidesPerView": 3
-                            }
-                        }}
-                    >
-                        {
-                            students
-                                ?.filter(student => { return pinnedList.includes(student.id) })
-                                ?.map(student => (
-                                    <SwiperSlide key={`slide-${student.id}`}>
-                                        
-                                    <Box sx={{ display: "block", width: "auto", maxWidth: 320 }} >
-                                        <StudentCard student={student} key={student.id} />
-                                        </Box>
-                                    </SwiperSlide>
-                                ))
-                        }
-                    </Swiper>
+                        {studentLoading ? <Loader /> : (
+                            pinnedList.length === 0 ? (
+                            <Fragment>No students pinned. 
+                            <Button size="small" component={RouterLink} to={'/students/'}>
+                                Click here to view student roster. &#8594;
+                            </Button></Fragment>
+                            ) : (
+                                <Swiper
+                                slidesPerView={1}
+                                spaceBetween={5}
+                                navigation
+                                centeredSlides={true}
+                                observer
+                                observeParents
+                                breakpoints={{
+                                    "820": {
+                                        "slidesPerView": 2
+                                    },
+                                    "1400": {
+                                        "slidesPerView": 3
+                                    }
+                                }}
+                            >
+                                {
+                                    students
+                                        ?.filter(student => { return pinnedList.includes(student.id) })
+                                        ?.map(student => (
+                                            <SwiperSlide key={`slide-${student.id}`}>
+                                                
+                                            <Box sx={{ display: "block", width: "auto", maxWidth: 320 }} >
+                                                <StudentCard student={student} key={student.id} />
+                                                </Box>
+                                            </SwiperSlide>
+                                        ))
+                                }
+                            </Swiper>
+                            )
+                        )}
 
                 </Container>
                 <h1>Upcoming Birthdays: </h1>

@@ -30,7 +30,7 @@ function DarkModeToggle() {
         <ListItemText id="switch-list-label-dark-mode" primary="Dark Mode" />
         <Switch
             edge="end"
-            checked={darkMode}
+            checked={darkMode ? true : false}
             inputProps={{
                 'aria-labelledby': 'switch-list-label-wifi',
             }}

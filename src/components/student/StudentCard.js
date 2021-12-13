@@ -4,6 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import List from '@mui/material/List';
@@ -22,45 +23,50 @@ function StudentCard({ student }) {
     const fullName = student.firstName + " " + student.lastName;
 
     return (
-            <Card sx={{ display: "block", width: "auto" }}>
-                <CardHeader
-                    avatar={
-                        <StudentHouseAvatar house={student.house} />
-                    }
-                    title={
-                        <Link color="inherit" underline="none" component={RouterLink} to={`/student/${student.id}`}>
-                            <Typography variant="h6" component="div" noWrap={true}>{fullName}</Typography>
-                        </Link>
-                    }
-                    action={
-                        <StudentPinButton studentId={student.id} sx={{
-                            display: { xs: 'none', sm: 'block' }
-                        }} />
-                    }
-                />
-                <CardMedia
-                    component="img"
-                    sx={{ height: 200 }}
-                    image={student.image}
-                    alt={student.firstName} />
-                <StudentChipBadges student={student} />
-                <List dense={true}>
-                    <ListItem>
-                        <ListItemText
-                            primary={`Enrolled in ${enrollYear}`}
-                        />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText
-                            primary="0 Courses Assigned"
-                        />
-                    </ListItem>
-                    
-                    <Button variant="outlined" component={RouterLink} to={`/student/${student.id}`}>
+        <Card sx={{ display: "block", width: "auto" }}>
+            <CardHeader
+                avatar={
+                    <StudentHouseAvatar house={student.house} />
+                }
+                title={
+                    <Link color="inherit" underline="none" component={RouterLink} to={`/student/${student.id}`}>
+                        <Typography variant="h6" component="div" noWrap={true}>{fullName}</Typography>
+                    </Link>
+                }
+                action={
+                    <StudentPinButton studentId={student.id} sx={{
+                        display: { xs: 'none', sm: 'block' }
+                    }} />
+                }
+            />
+            <CardMedia
+                component="img"
+                sx={{ height: 200 }}
+                image={student.image}
+                alt={student.firstName} />
+            <StudentChipBadges student={student} />
+            <List dense={true}>
+                <ListItem>
+                    <ListItemText
+                        primary={`Enrolled in ${enrollYear}`}
+                    />
+                </ListItem>
+                <ListItem>
+                    <ListItemText
+                        primary={`${student.enrolledCount} Courses Assigned`}
+                    />
+                </ListItem>
+                <CardActions>
+                    <Button size="small" sx={{ flexGrow: 1, justifyContent: "left" }} component={RouterLink} to={`/student/${student.id}`}>
                         More Info &#8594;
                     </Button>
-                </List>
-            </Card>
+                    <StudentPinButton studentId={student.id} sx={{
+                        display: { xs: 'block', sm: 'none' }
+                    }} />
+                </CardActions>
+
+            </List>
+        </Card>
     )
 
 }

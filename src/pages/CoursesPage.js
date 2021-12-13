@@ -5,6 +5,9 @@ import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Typography from '@mui/material/Typography';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 import { listCourses } from '../actions/courseActions';
 import { numToNthYear } from '../utils.js/studentUtils';
@@ -26,29 +29,49 @@ function CoursesPage() {
 
     return (
         <DocumentTitle title="Course Catalogue">
-        <Fragment>
-            <h1>Courses</h1>
-            {courseLoading && <Loader />}
-            {
-                courseYearList.map(year => {
-                    const yearText = numToNthYear(year)
-                    return (
-                        <Fragment>
-                            <h5>{yearText} Year Classes</h5>
-                            {
-                                courses
-                                    ?.filter(course => course.recommendedYear === year)
-                                    .map(course =>
-                                        <Link color="inherit" underline="none" component={RouterLink} to={`/course/${course.id}`}>
-                                            <Typography variant="body1" component="div" noWrap={true}>{course.name}</Typography>
-                                        </Link>
-                                    )
-                            }
-                        </Fragment>
-                    )
-                })
-            }
-        </Fragment>
+            <Fragment>
+                <h1>Courses</h1>
+                {courseLoading && <Loader />}
+                {
+                    courseYearList.map(year => {
+                        const yearText = numToNthYear(year)
+                        return (
+                            <Fragment>
+                                <h5>{yearText} Year Classes</h5>
+                                {
+                                    courses
+                                        ?.filter(course => course.recommendedYear === year)
+                                        .map(course =>
+                                            <Link color="inherit" underline="none" component={RouterLink} to={`/course/${course.id}`}>
+                                                <Typography variant="body1" component="div" noWrap={true}>{course.name}</Typography>
+                                            </Link>
+                                        )
+                                }
+                            </Fragment>
+                        )
+                    })
+                }
+
+                <Box sx={{ bgcolor: 'background.paper' }}>
+                    <Tabs
+                        variant="scrollable"
+                        scrollButtons
+                        allowScrollButtonsMobile
+                        aria-label="scrollable force tabs example"
+                        sx={{ borderRight: 1, borderColor: 'divider' }}
+                    >
+                    {
+                        courseYearList.map(year => {
+                        const yearText = numToNthYear(year)
+
+                        return (
+                        <Tab label={`${yearText} Year`} />
+                        )
+                    })
+                    }
+                    </Tabs>
+                </Box>
+            </Fragment>
 
         </DocumentTitle>
     )
