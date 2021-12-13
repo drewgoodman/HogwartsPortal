@@ -5,7 +5,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
 import { HOUSE_PRIMARY_COLOR, HOUSE_PRIMARY_COLOR_INNERTEXT } from '../../constants/baseConstants';
-import { numToNthYear } from '../../utils.js/studentUtils';
+import { numToNthYear } from '../../utils/studentUtils';
 
 function StudentChipBadges({student}) {
 

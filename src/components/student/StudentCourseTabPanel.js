@@ -49,7 +49,7 @@ function StudentCourseTabPanel(props) {
                         <Typography variant="text">
                             <strong>Overall Grade Average:</strong> {gradeAverage.toFixed(2)}%
                         </Typography>
-                        <Button size="small" component={RouterLink} to={`/courses/${course.id}`} sx={{ justifyContent: "left" }}>
+                        <Button size="small" component={RouterLink} to={`/course/${course.id}`} sx={{ justifyContent: "left" }}>
                             View Course Details &#8594;
                         </Button>
                     </Stack>

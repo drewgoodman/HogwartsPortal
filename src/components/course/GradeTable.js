@@ -1,9 +1,13 @@
 import React, { Fragment, useMemo } from 'react';
+import { Link as RouterLink } from 'react-router-dom'
 
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -16,7 +20,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function GradeTable(props) {
 
-    const { student, expanded, handleChange } = props;
+    const { student, expanded, handleChange, courseId } = props;
 
     const getGradeAverage = (grades) => {
 
@@ -59,35 +63,48 @@ function GradeTable(props) {
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
-                {
-                    student.grades.length === 0 ? (
-                        <Fragment>No grades currently available.</Fragment>
-                    ) : (
-                        <TableContainer>
-                            <Table sx={{}} aria-label="course grade table">
-                                <TableHead>
-                                    <TableRow>
-                                        Overall Grade Average: {gradeAverage.toFixed(2)}%
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell>Test Date</TableCell>
-                                        <TableCell>Score</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {
-                                        student.grades.map(grade => (
-                                            <TableRow key={`grade-${grade.id}`}>
-                                                <TableCell align="left">{grade.date}</TableCell>
-                                                <TableCell align="left">{grade.grade}%</TableCell>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                        
+                    <Stack spacing={2} sx={{ padding: "10px" }}>
+                        <Typography variant="text">
+                            <strong>Overall Grade Average:</strong> {gradeAverage.toFixed(2)}%
+                        </Typography>
+                        <Button size="small" component={RouterLink} to={`/student/${student.id}`} state={{ prevCourseId: courseId }} sx={{ justifyContent: "left" }}>
+                            View Student Info &#8594;
+                        </Button>
+                    </Stack>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        {
+                            student.grades.length === 0 ? (
+                                <Fragment>No grades currently available.</Fragment>
+                            ) : (
+                                <TableContainer>
+                                    <Table sx={{}} aria-label="course grade table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>Test Date</TableCell>
+                                                <TableCell>Score</TableCell>
                                             </TableRow>
-                                        ))
-                                    }
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    )
-                }
+                                        </TableHead>
+                                        <TableBody>
+                                            {
+                                                student.grades.map(grade => (
+                                                    <TableRow key={`grade-${grade.id}`}>
+                                                        <TableCell align="left">{grade.date}</TableCell>
+                                                        <TableCell align="left">{grade.grade}%</TableCell>
+                                                    </TableRow>
+                                                ))
+                                            }
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            )
+                        }
+                    </Grid>
+                </Grid>
+
             </AccordionDetails>
         </Accordion>
     )

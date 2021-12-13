@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 import { useDispatch, useSelector } from 'react-redux'
@@ -26,33 +26,39 @@ import { listStudents } from '../actions/studentActions';
 import Loader from '../components/ui/Loader';
 import StudentCard from '../components/student/StudentCard';
 
-import { NUM_TO_MONTHS } from '../constants/baseConstants';
+import { numToMonths } from '../utils/studentUtils.js';
 
 // install Swiper modules
 SwiperCore.use([Navigation]);
 
 const upcomingMonths = () => {
 
-    const checkMonth = (month) => {
-        if (month === 0) { return 0 }
-        return month
-    }
-
     const date = new Date();
-    let currentMonth = date.getMonth();
-    const birthdayMonths = Array.from({ length: 3 }, (_, i = currentMonth) => checkMonth(i))
-    birthdayMonths.unshift(currentMonth)
+    let currentMonth = date.getMonth() + 1;
+    let birthdayMonths = []
+    for (let i = 0; i < 5; i++) {
+        const getMonthRollover = (month) => {
+            if (month <= 12) { return month }
+            return month - 12;
+        }
+        birthdayMonths.push(getMonthRollover(currentMonth + i))
+    }
     return birthdayMonths
 
 }
 
 const checkBirthMonth = (birthday, currentMonth) => {
     if (birthday) {
-        const birthMonth = parseInt(birthday.split("-")[1]) - 1;
+        const birthMonth = parseInt(birthday.split("-")[1]);
         if (birthMonth === currentMonth) { return true };
         return false;
     }
     return false;
+}
+
+const getBirthday = (timestamp) => {
+    const [birthYear, birthMonth, birthDay] = timestamp.split('-');
+    return `${numToMonths(birthMonth)} ${birthDay}, ${birthYear}`;
 }
 
 function HomePage() {
@@ -64,11 +70,13 @@ function HomePage() {
 
     const { students, loading: studentLoading } = studentList
 
-    const birthdayMonthsList = upcomingMonths();
-
     useEffect(() => {
         dispatch(listStudents())
     }, [dispatch])
+
+    const birthdayMonthsList = useMemo(() => {
+        return upcomingMonths();
+    }, [])
 
     return (
         <DocumentTitle title="Hogwarts Faculty Portal | Dashboard">
@@ -126,7 +134,7 @@ function HomePage() {
                             </Typography>
                             {
                                 birthdayMonthsList.map(month => (
-                                    <List key={`month-${month}`} subheader={<ListSubheader>{NUM_TO_MONTHS[month]}</ListSubheader>}>
+                                    <List key={`month-${month}`} subheader={<ListSubheader>{numToMonths(month)}</ListSubheader>}>
                                         {
                                             students
                                                 ?.filter(student => { return checkBirthMonth(student.birthday, month) })
@@ -137,7 +145,7 @@ function HomePage() {
                                                         <ListItemAvatar>
                                                             <Avatar alt={`${student.firstName}`} src={student.image} />
                                                         </ListItemAvatar>
-                                                        <ListItemText primary={`${student.firstName} ${student.lastName}`} secondary="Jan 9, 2014" />
+                                                        <ListItemText primary={`${student.firstName} ${student.lastName}`} secondary={getBirthday(student.birthday)} />
                                                     </ListItem>
                                                 ))
                                         }

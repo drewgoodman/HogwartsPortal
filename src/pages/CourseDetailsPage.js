@@ -19,7 +19,7 @@ import Typography from '@mui/material/Typography';
 import GradeTable from '../components/course/GradeTable';
 import Loader from '../components/ui/Loader';
 
-import { numToNthYear } from '../utils.js/studentUtils';
+import { numToNthYear } from '../utils/studentUtils.js';
 
 function CourseDetailsPage() {
 
@@ -95,7 +95,7 @@ function CourseDetailsPage() {
                                                     <Fragment>
 
                                                         {
-                                                            course.students.map(student => <GradeTable student={student} expanded={gradesExpanded} handleChange={handleGradesChange}
+                                                            course.students.map(student => <GradeTable student={student} courseId={course.id} expanded={gradesExpanded} handleChange={handleGradesChange}
                                                                 key={`grades-for-${student.id}`} />)
                                                         }
 

@@ -51,6 +51,7 @@ function StudentDetailsPage() {
 
     const location = useLocation();
     const fromDashboard = location.state?.fromDashboard || false;
+    const prevCourseId = location.state?.prevCourseId || null;
 
     const handleTagDelete = (tagData) => {
         dispatch(openTagDeleteModal(tagData))
@@ -112,6 +113,10 @@ function StudentDetailsPage() {
                                 fromDashboard ? (
                                     <Button variant="outlined" component={RouterLink} to="/">
                                         &#8592; Back to Dashboard
+                                    </Button>
+                                ) : prevCourseId ? (
+                                    <Button variant="outlined" component={RouterLink} to={`/course/${prevCourseId}`}>
+                                        &#8592; Back to Course Info
                                     </Button>
                                 ) : (
                                     <Button variant="outlined" component={RouterLink} to="/students/">
