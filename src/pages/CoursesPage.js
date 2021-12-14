@@ -7,6 +7,8 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
 import { listCourses } from '../actions/courseActions';
 import { numToNthYear } from '../utils/studentUtils';
@@ -36,58 +38,64 @@ function CoursesPage() {
     return (
         <DocumentTitle title="Course Catalogue">
             <Fragment>
-                <h1>Course Catalogue</h1>
-                <Container maxWidth="lg">
-                <Grid container maxWidth="lg" spacing={3}>
-                    <Grid item xs={12} sm={4}>
-                        <Box sx={{ bgcolor: 'background.paper' }}>
-                            <Tabs
-                                value={yearValue}
-                                onChange={handleYearSelect}
-                                orientation="vertical"
-                                variant="scrollable"
-                                scrollButtons
-                                allowScrollButtonsMobile
-                                aria-label="scrollable force tabs example"
-                                sx={{ borderRight: 1, borderColor: 'divider' }}
-                            >
-                                {
-                                    courseYearList.map(year => {
-                                        const yearText = numToNthYear(year)
+                <Toolbar/>
+                <Typography gutterBottom variant="h5" component="div" noWrap={true} sx={{ textTransform: "uppercase" }}>
+                    Course Catalogue
+                </Typography>
+                <Container maxWidth="full">
+                    <Grid container maxWidth="lg" spacing={3}>
+                        <Grid item xs={12} sm={3}>
+                            <Box sx={{ bgcolor: 'background.paper' }}>
+                                <Tabs
+                                    value={yearValue}
+                                    onChange={handleYearSelect}
+                                    orientation="vertical"
+                                    variant="scrollable"
+                                    scrollButtons
+                                    allowScrollButtonsMobile
+                                    aria-label="scrollable force tabs example"
+                                    sx={{ borderRight: 1, borderColor: 'divider' }}
+                                >
+                                    {
+                                        courseYearList.map(year => {
+                                            const yearText = numToNthYear(year)
 
-                                        return (
-                                            <Tab key={`course-year-tab-${year}`} label={`${yearText} Year`} value={year} sx={{justifyContent: "right"}} />
-                                        )
-                                    })
-                                }
-                            </Tabs>
-                        </Box>
+                                            return (
+                                                <Tab key={`course-year-tab-${year}`} label={`${yearText} Year`} value={year} sx={{ justifyContent: "right" }} />
+                                            )
+                                        })
+                                    }
+                                </Tabs>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} sm={9}>
+                            {courseLoading && <Loader />}
+                            {
+                                courseYearList.map(year => {
+                                    return (
+                                        <div
+                                            role="tabpanel"
+                                            hidden={yearValue !== year}
+                                            aria-labelledby={`course-year-panel-${year}`}
+                                            key={`course-year-panel-${year}`}
+                                        >
+                                            <Grid container spacing={2}>
+                                                {
+                                                    courses
+                                                        ?.filter(course => course.recommendedYear === year)
+                                                        .map(course => (
+                                                            <Grid item sx={{ display: "block", width: { xs: "100%", sm: 320 } }} >
+                                                                <CourseCard course={course} />
+                                                            </Grid>
+                                                        ))
+                                                }
+                                            </Grid>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={8}>
-                {courseLoading && <Loader />}
-                        {
-                            courseYearList.map(year => {
-                                const yearText = numToNthYear(year)
-                                return (
-                                    <div
-                                        role="tabpanel"
-                                        hidden={yearValue !== year}
-                                        aria-labelledby={`course-year-panel-${year}`}
-                                        key={`course-year-panel-${year}`}
-                                    >
-                                        <h5>{yearText} Year Classes</h5>
-                                        {
-                                            courses
-                                                ?.filter(course => course.recommendedYear === year)
-                                                .map(course => <CourseCard course={course} />
-                                                )
-                                        }
-                                    </div>
-                                )
-                            })
-                        }
-                    </Grid>
-                </Grid>
                 </Container>
             </Fragment>
 

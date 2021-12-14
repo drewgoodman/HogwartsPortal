@@ -84,8 +84,7 @@ function HomePage() {
                 <Toolbar />
                 <Container maxWidth="full">
                     <Grid container spacing={4}>
-                        <Grid item xs={12} sm={12} md={9}>
-
+                        <Grid item xs={12} sm={12} md={12} lg={9}>
                             <Typography gutterBottom variant="h5" component="div" noWrap={true} sx={{ textTransform: "uppercase" }}>
                                 Pinned Profiles
                             </Typography>
@@ -107,7 +106,16 @@ function HomePage() {
                                             "820": {
                                                 "slidesPerView": 2
                                             },
+                                            "900": {
+                                                "slidesPerView": 1
+                                            },
+                                            "1070": {
+                                                "slidesPerView": 2
+                                            },
                                             "1400": {
+                                                "slidesPerView": 2
+                                            },
+                                            "1650": {
                                                 "slidesPerView": 3
                                             }
                                         }}
@@ -128,8 +136,8 @@ function HomePage() {
                                 )
                             )}
                         </Grid>
-                        <Grid item xs={12} sm={12} md={3}>
-                            <Typography gutterBottom variant="h5" component="div" noWrap={true} sx={{ textTransform: "uppercase" }}>
+                        <Grid item xs={12} sm={12} md={12} lg={3}>
+                            <Typography gutterBottom variant="h5" component="div" sx={{ textTransform: "uppercase" }}>
                                 Upcoming Birthdays
                             </Typography>
                             {
@@ -141,7 +149,7 @@ function HomePage() {
                                                 .map(student =>
                                                 (
 
-                                                    <ListItem>
+                                                    <ListItem key={`student${student.id}-bday`}>
                                                         <ListItemAvatar>
                                                             <Avatar alt={`${student.firstName}`} src={student.image} />
                                                         </ListItemAvatar>
