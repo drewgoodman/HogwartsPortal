@@ -2,6 +2,9 @@ import React, { Fragment, useEffect, useState } from 'react'
 import DocumentTitle from 'react-document-title';
 import { useDispatch, useSelector } from 'react-redux'
 
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -17,6 +20,9 @@ import CourseCard from '../components/course/CourseCard';
 import Loader from '../components/ui/Loader';
 
 function CoursesPage() {
+
+    const theme = useTheme();
+    const tabBreakpoint = useMediaQuery(theme.breakpoints.up('sm'));
 
     const dispatch = useDispatch();
 
@@ -38,23 +44,23 @@ function CoursesPage() {
     return (
         <DocumentTitle title="Course Catalogue">
             <Fragment>
-                <Toolbar/>
+                <Toolbar />
                 <Typography gutterBottom variant="h5" component="div" noWrap={true} sx={{ textTransform: "uppercase" }}>
                     Course Catalogue
                 </Typography>
-                <Container maxWidth="full">
+                <Container sx={{marginTop: 5}}>
                     <Grid container maxWidth="lg" spacing={3}>
                         <Grid item xs={12} sm={3}>
                             <Box sx={{ bgcolor: 'background.paper' }}>
                                 <Tabs
                                     value={yearValue}
                                     onChange={handleYearSelect}
-                                    orientation="vertical"
+                                    orientation={tabBreakpoint ? "vertical" : "horizontal"}
                                     variant="scrollable"
                                     scrollButtons
                                     allowScrollButtonsMobile
                                     aria-label="scrollable force tabs example"
-                                    sx={{ borderRight: 1, borderColor: 'divider' }}
+                                    sx={{ borderRight: { xs: 0, sm: 1 }, borderColor: {xs: 'none', sm: 'divider'}}}
                                 >
                                     {
                                         courseYearList.map(year => {
