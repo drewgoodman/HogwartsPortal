@@ -43,21 +43,11 @@ function SideBar(props) {
                     menuText="Student Roster"
                     buttonLink="/students/"
                 />
-                {/* <SideBarButton
-                    buttonIcon={<CakeIcon />}
-                    menuText="Birthdays"
-                    buttonLink="/birthdays/"
-                /> */}
                 <SideBarButton
                     buttonIcon={<SchoolIcon />}
                     menuText="Course Catalogue"
                     buttonLink="/courses/"
                 />
-                {/* <SideBarButton
-                    buttonIcon={<EmojiEventsIcon />}
-                    menuText="Organizations"
-                    buttonLink="/organizations/"
-                /> */}
             </List>
             <Toolbar />
 

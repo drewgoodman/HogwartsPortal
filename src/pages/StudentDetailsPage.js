@@ -219,7 +219,7 @@ function StudentDetailsPage() {
                                                     ) : (
                                                         <Paper>
                                                             <Box sx={{ bgcolor: 'background.paper' }}>
-                                                                <Typography variant="h5" component="div" sx={{ marginBottom: 3 }}>
+                                                                <Typography variant="h5" component="div" sx={{ padding: 2 }}>
                                                                     Enrolled Classes
                                                                 </Typography>
                                                                 {
@@ -228,9 +228,8 @@ function StudentDetailsPage() {
                                                                             value={courseValue}
                                                                             onChange={handleCourseSelect}
                                                                             variant="scrollable"
-                                                                            scrollButtons="auto"
+                                                                            scrollButtons
                                                                             aria-label="scrollable classes"
-                                                                            sx={{ display: { xs: 'none', sm: 'block' } }}
                                                                         >
                                                                             {
                                                                                 student.courses?.map((course, index) => (
@@ -240,7 +239,7 @@ function StudentDetailsPage() {
                                                                         </Tabs>
                                                                     ) : (
                                                                         <FormControl
-                                                                            sx={{ marginBottom: 3, display: { sm: 'none' } }}
+                                                                            sx={{ marginBottom: 3 }}
                                                                             fullWidth
                                                                         >
                                                                             <InputLabel id="student-course-filter">Course Info</InputLabel>
