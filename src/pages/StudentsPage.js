@@ -98,8 +98,8 @@ function StudentsPage() {
                                 .filter(student => filterByHouse(student))
                                 ?.map(student => (
 
-                                    <Grid item sx={{ display: "block", width: { xs: "100%", sm: 320 } }} >
-                                        <StudentCard student={student} key={student.id} />
+                                    <Grid item key={student.id} sx={{ display: "block", width: { xs: "100%", sm: 320 } }} >
+                                        <StudentCard student={student} />
                                     </Grid>
                                 ))
                         }

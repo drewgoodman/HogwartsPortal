@@ -90,7 +90,7 @@ function CoursesPage() {
                                                     courses
                                                         ?.filter(course => course.recommendedYear === year)
                                                         .map(course => (
-                                                            <Grid item sx={{ display: "block", width: { xs: "100%", sm: 320 } }} >
+                                                            <Grid item sx={{ display: "block", width: { xs: "100%", sm: 320 } }} key={`course-card-${course.id}`}>
                                                                 <CourseCard course={course} />
                                                             </Grid>
                                                         ))
