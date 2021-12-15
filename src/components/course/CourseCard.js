@@ -2,7 +2,6 @@ import React from 'react'
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
 
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,12 +9,13 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 
 import PeopleIcon from '@mui/icons-material/People';
+
+import AssignedProfessorListItem from './AssignedProfessorListItem';
 
 function CourseCard({ course }) {
     return (
@@ -34,27 +34,9 @@ function CourseCard({ course }) {
                 alt={course.name}
             />
             <List dense>
-                {
-                    course.professorDetails ? (
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar alt={`${course.professorDetails.firstName} ${course.professorDetails.lastName}`} src={course.professorDetails.image} />
-                            </ListItemAvatar>
-                            <ListItemText>
-                                <ListItemText primary={`${course.professorDetails.firstName} ${course.professorDetails.lastName}`} secondary="Assigned Professor" />
-                            </ListItemText>
-                        </ListItem>
-                    ) : (
-                        <ListItem>
-                        <ListItemAvatar>
-                            <Avatar alt="Unassigned" sx={{ bgcolor: "gray"}}>??</Avatar>
-                        </ListItemAvatar>
-                            <ListItemText primary="Professor Unknown" secondary="None assigned" />
-                        </ListItem>
-                    )
-                }
+                <AssignedProfessorListItem professorDetails={course.professorDetails} />
                 <ListItem>
-                    <ListItemIcon sx={{ alignContent: "center"}}>
+                    <ListItemIcon sx={{ paddingLeft: 1 }}>
                         <PeopleIcon />
                     </ListItemIcon>
                     <ListItemText

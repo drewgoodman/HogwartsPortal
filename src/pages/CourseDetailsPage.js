@@ -16,6 +16,7 @@ import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+import AssignedProfessorListItem from '../components/course/AssignedProfessorListItem';
 import GradeTable from '../components/course/GradeTable';
 import Loader from '../components/ui/Loader';
 
@@ -85,23 +86,24 @@ function CourseDetailsPage() {
                                                 label={`${recommendedYear} Year Course`}
                                             />
                                         </Box>
+                                        <AssignedProfessorListItem professorDetails={course.professorDetails}/>
                                         <Divider />
                                         <Typography variant="h6" component="div">
                                             Enrolled Students:
                                         </Typography>
                                         <Box>
                                             {
-                                                course?.students ? (
+                                                course.students?.length > 0 ? (
                                                     <Fragment>
-
                                                         {
                                                             course.students.map(student => <GradeTable student={student} courseId={course.id} expanded={gradesExpanded} handleChange={handleGradesChange}
                                                                 key={`grades-for-${student.id}`} />)
                                                         }
-
                                                     </Fragment>
                                                 ) : (
-                                                    <Fragment>No students current enrolled.</Fragment>
+                                                    <Fragment>
+                                                        No students current enrolled.
+                                                        </Fragment>
                                                 )
                                             }
                                         </Box>

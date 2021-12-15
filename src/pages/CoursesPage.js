@@ -48,8 +48,8 @@ function CoursesPage() {
                 <Typography gutterBottom variant="h5" component="div" noWrap={true} sx={{ textTransform: "uppercase" }}>
                     Course Catalogue
                 </Typography>
-                <Container sx={{marginTop: 5}}>
-                    <Grid container maxWidth="lg" spacing={3}>
+                <Container maxWidth="full" sx={{marginTop: 5}}>
+                    <Grid container maxWidth="full" spacing={3}>
                         <Grid item xs={12} sm={3}>
                             <Box sx={{ bgcolor: 'background.paper' }}>
                                 <Tabs

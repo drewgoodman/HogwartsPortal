@@ -13,6 +13,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 
+import AssignedProfessorListItem from '../course/AssignedProfessorListItem';
+
 function StudentCourseTabPanel(props) {
 
     const { value, index, course } = props;
@@ -49,6 +51,7 @@ function StudentCourseTabPanel(props) {
                         <Typography variant="text">
                             <strong>Overall Grade Average:</strong> {gradeAverage.toFixed(2)}%
                         </Typography>
+                        <AssignedProfessorListItem professorDetails={course.professor} hideUnassigned={true} />
                         <Button size="small" component={RouterLink} to={`/course/${course.id}`} sx={{ justifyContent: "left" }}>
                             View Course Details &#8594;
                         </Button>
