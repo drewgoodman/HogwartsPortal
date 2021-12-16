@@ -7,16 +7,20 @@ import ListItemText from '@mui/material/ListItemText';
 
 function AssignedProfessorListItem({ professorDetails, hideUnassigned = false }) {
 
-    const { firstName, lastName, image} = professorDetails
+    if (professorDetails) {
 
-    return professorDetails ? (
-        <ListItem>
-            <ListItemAvatar>
-                <Avatar alt={`${firstName} ${lastName}`} src={image} />
-            </ListItemAvatar>
-            <ListItemText primary={`${firstName} ${lastName}`} secondary="Assigned Professor" />
-        </ListItem>
-    ) : hideUnassigned ? (
+        const { firstName, lastName, image} = professorDetails;
+
+        return (
+            <ListItem>
+                <ListItemAvatar>
+                    <Avatar alt={`${firstName} ${lastName}`} src={image} />
+                </ListItemAvatar>
+                <ListItemText primary={`${firstName} ${lastName}`} secondary="Assigned Professor" />
+            </ListItem> )
+    }
+
+    return hideUnassigned ? (
         null
     ) : (
         <ListItem>
