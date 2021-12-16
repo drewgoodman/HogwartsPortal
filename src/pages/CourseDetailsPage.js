@@ -86,7 +86,7 @@ function CourseDetailsPage() {
                                                 label={`${recommendedYear} Year Course`}
                                             />
                                         </Box>
-                                        <AssignedProfessorListItem professorDetails={course.professorDetails}/>
+                                        <AssignedProfessorListItem professorDetails={course?.professorDetails}/>
                                         <Divider />
                                         <Typography variant="h6" component="div">
                                             Enrolled Students:
